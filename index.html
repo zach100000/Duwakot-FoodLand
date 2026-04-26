@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Duwakot Foodland Pvt. Ltd.</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d0d0d;
+  --surface: #161616;
+  --surface2: #1e1e1e;
+  --border: rgba(255,255,255,0.08);
+  --gold: #c9a84c;
+  --gold2: #e8c97a;
+  --red: #d4453a;
+  --blue: #3a7bd4;
+  --cream: #f0ebe0;
+  --muted: #6b6b6b;
+  --text: #e8e0d0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+.fraunces{font-family:'Fraunces',serif}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,13,13,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--gold);cursor:pointer}
+.nav-links{display:flex;gap:4px;align-items:center}
+.nav-link{padding:6px 12px;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-radius:3px;transition:color 0.2s,background 0.2s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--gold);background:rgba(201,168,76,0.08)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:all 0.3s}
+@media(max-width:900px){.nav-links{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(13,13,13,0.98);flex-direction:column;padding:12px;border-bottom:1px solid var(--border);gap:2px}.nav-links.open{display:flex}.hamburger{display:flex}}
+
+/* PAGES */
+.page{display:none;min-height:100vh;padding-top:60px}
+.page.active{display:block}
+
+/* CART BUTTON */
+#cart-fab{position:fixed;bottom:24px;right:24px;z-index:900;background:var(--gold);color:#0d0d0d;border:none;border-radius:50px;padding:12px 20px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.85rem;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(201,168,76,0.3);transition:transform 0.2s,box-shadow 0.2s}
+#cart-fab:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,168,76,0.4)}
+.fab-badge{background:#0d0d0d;color:var(--gold);font-size:0.7rem;font-weight:700;min-width:20px;height:20px;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:0 5px}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(201,168,76,0.06) 0%,transparent 60%),radial-gradient(ellipse at 70% 20%,rgba(212,69,58,0.05) 0%,transparent 50%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;opacity:0.5}
+.tag{display:inline-block;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,0.3);padding:4px 14px;border-radius:20px;margin-bottom:20px}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(2.8rem,8vw,6rem);font-weight:900;line-height:1;margin-bottom:16px;color:var(--cream)}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{color:var(--muted);font-size:0.95rem;max-width:480px;margin:0 auto 40px;line-height:1.7}
+.cta-group{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn-primary{background:var(--gold);color:#0d0d0d;border:none;padding:13px 28px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.85rem;letter-spacing:0.05em;border-radius:3px;cursor:pointer;transition:all 0.2s}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);padding:13px 28px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:0.85rem;letter-spacing:0.05em;border-radius:3px;cursor:pointer;transition:all 0.2s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.btn-blue{background:var(--blue);color:#fff;border:none;padding:13px 28px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.85rem;letter-spacing:0.05em;border-radius:3px;cursor:pointer;transition:all 0.2s}
+.btn-blue:hover{filter:brightness(1.1)}
+
+/* SECTION COMMON */
+.section{padding:80px 24px;max-width:1200px;margin:0 auto}
+.section-tag{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.section-title{font-family:'Fraunces',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;margin-bottom:12px;color:var(--cream)}
+.section-sub{color:var(--muted);font-size:0.9rem;line-height:1.7;max-width:520px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.2;margin:0 auto}
+
+/* INFO CARDS */
+.info-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:40px}
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:24px;transition:border-color 0.2s}
+.info-card:hover{border-color:rgba(201,168,76,0.2)}
+.info-card .ic-icon{font-size:1.6rem;margin-bottom:12px}
+.info-card .ic-label{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.info-card .ic-val{font-size:0.95rem;font-weight:500;color:var(--cream)}
+
+/* MENU */
+.menu-cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px}
+.cat-btn{padding:6px 16px;border-radius:3px;font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.15s}
+.cat-btn:hover,.cat-btn.active{background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.3);color:var(--gold)}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.menu-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:16px;transition:all 0.2s;display:flex;flex-direction:column;gap:10px}
+.menu-card:hover{border-color:rgba(201,168,76,0.2);transform:translateY(-2px)}
+.mc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.mc-name{font-size:0.88rem;font-weight:500;color:var(--cream);line-height:1.4;flex:1}
+.mc-code{font-size:0.6rem;color:var(--muted);font-family:monospace}
+.mc-dept{display:inline-block;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;border-radius:10px}
+.dept-kitchen{background:rgba(212,69,58,0.1);color:#d4453a;border:1px solid rgba(212,69,58,0.2)}
+.dept-cafe{background:rgba(201,168,76,0.1);color:var(--gold);border:1px solid rgba(201,168,76,0.2)}
+.dept-bar{background:rgba(58,123,212,0.1);color:#3a7bd4;border:1px solid rgba(58,123,212,0.2)}
+.mc-bottom{display:flex;align-items:center;justify-content:space-between}
+.mc-price{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--gold)}
+.btn-add{background:var(--gold);color:#0d0d0d;border:none;padding:5px 14px;border-radius:3px;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.15s;letter-spacing:0.05em}
+.btn-add:hover{background:var(--gold2)}
+.qty-ctrl{display:flex;align-items:center;gap:6px}
+.qty-btn{width:24px;height:24px;border:1px solid rgba(201,168,76,0.3);background:transparent;color:var(--gold);border-radius:3px;cursor:pointer;font-size:0.9rem;display:flex;align-items:center;justify-content:center;transition:background 0.15s}
+.qty-btn:hover{background:rgba(201,168,76,0.1)}
+.qty-num{font-size:0.85rem;font-weight:600;color:var(--cream);min-width:18px;text-align:center}
+
+/* SEARCH */
+.search-bar{position:relative;max-width:400px;margin-bottom:20px}
+.search-bar input{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:10px 14px 10px 38px;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.875rem;outline:none;transition:border-color 0.2s}
+.search-bar input:focus{border-color:rgba(201,168,76,0.3)}
+.search-bar .si{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:0.9rem}
+
+/* CART PANEL */
+#cart-panel{position:fixed;top:0;right:0;width:380px;height:100vh;background:rgba(22,22,22,0.99);border-left:1px solid var(--border);z-index:1100;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.22,1,0.36,1);display:flex;flex-direction:column;backdrop-filter:blur(20px)}
+#cart-panel.open{transform:translateX(0)}
+.cart-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.cart-head h3{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--cream)}
+.cart-close{background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;padding:4px}
+.cart-items{flex:1;overflow-y:auto;padding:12px 20px}
+.cart-item{padding:10px 0;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:6px}
+.ci-row{display:flex;align-items:center;gap:8px}
+.ci-name{font-size:0.83rem;color:var(--cream);flex:1}
+.ci-price{font-size:0.83rem;color:var(--gold);font-weight:600;white-space:nowrap}
+.cart-foot{padding:16px 20px;border-top:1px solid var(--border)}
+.totals-row{display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:6px;color:var(--muted)}
+.totals-row.total{font-size:1rem;font-weight:600;color:var(--cream);margin-top:8px}
+.totals-row.total span:last-child{color:var(--gold);font-family:'Fraunces',serif;font-size:1.1rem}
+.notes-area{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:8px 12px;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.8rem;resize:none;margin:10px 0;outline:none}
+.btn-pay{width:100%;background:var(--gold);color:#0d0d0d;border:none;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.08em;border-radius:3px;cursor:pointer;transition:all 0.2s;margin-top:4px}
+.btn-pay:hover{background:var(--gold2)}
+.btn-pay:disabled{opacity:0.4;cursor:not-allowed}
+
+/* OVERLAY */
+.panel-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;display:none}
+.panel-overlay.show{display:block}
+
+/* MODAL */
+.modal-wrap{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:1200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-wrap.show{display:flex}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:8px;width:100%;max-width:480px;max-height:85vh;overflow-y:auto;padding:28px;animation:mIn 0.3s cubic-bezier(0.22,1,0.36,1)}
+@keyframes mIn{from{opacity:0;transform:scale(0.94) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal h2{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--cream);margin-bottom:6px}
+.modal p.sub{font-size:0.82rem;color:var(--muted);margin-bottom:20px}
+
+/* FORMS */
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.875rem;outline:none;transition:border-color 0.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:rgba(201,168,76,0.4)}
+.form-group select option{background:var(--surface)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* TOAST */
+#toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--surface);border:1px solid rgba(201,168,76,0.3);color:var(--gold);font-size:0.82rem;padding:9px 20px;border-radius:30px;z-index:1300;transition:transform 0.3s;white-space:nowrap}
+#toast.show{transform:translateX(-50%) translateY(0)}
+
+/* CARWASH */
+.wash-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:32px}
+.wash-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px;transition:border-color 0.2s;position:relative;overflow:hidden}
+.wash-card.featured{border-color:rgba(58,123,212,0.4)}
+.wash-card.featured::before{content:'POPULAR';position:absolute;top:14px;right:14px;font-size:0.6rem;letter-spacing:0.15em;background:var(--blue);color:#fff;padding:2px 8px;border-radius:2px}
+.wash-card h3{font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:6px;color:var(--cream)}
+.wash-price{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:700;color:var(--blue);margin-bottom:14px}
+.wash-features{list-style:none;margin-bottom:20px}
+.wash-features li{font-size:0.82rem;color:var(--muted);padding:4px 0;display:flex;align-items:center;gap:6px}
+.wash-features li::before{content:'✓';color:var(--blue);font-weight:700}
+
+/* BOOKINGS CALENDAR */
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:12px}
+.cal-day{padding:8px 4px;text-align:center;border-radius:4px;font-size:0.8rem;cursor:pointer;transition:all 0.15s;border:1px solid transparent}
+.cal-day.header{color:var(--muted);font-size:0.7rem;letter-spacing:0.1em;cursor:default;text-transform:uppercase}
+.cal-day.available:hover{background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.2);color:var(--gold)}
+.cal-day.selected{background:rgba(201,168,76,0.15);border-color:var(--gold);color:var(--gold)}
+.cal-day.past{color:var(--border);cursor:not-allowed}
+.cal-day.today{color:var(--gold2);font-weight:600}
+.timeslots{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;margin-top:16px}
+.timeslot{padding:8px;text-align:center;border:1px solid var(--border);border-radius:4px;font-size:0.78rem;cursor:pointer;transition:all 0.15s}
+.timeslot.available:hover{border-color:rgba(201,168,76,0.3);color:var(--gold)}
+.timeslot.selected{background:rgba(201,168,76,0.12);border-color:var(--gold);color:var(--gold)}
+.timeslot.taken{color:var(--border);cursor:not-allowed;text-decoration:line-through}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:24px}
+.gal-item{border-radius:6px;overflow:hidden;aspect-ratio:1;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:2.5rem;transition:all 0.2s;cursor:pointer}
+.gal-item:hover{transform:scale(1.02);border-color:rgba(201,168,76,0.2)}
+
+/* REVIEWS */
+.review-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:24px}
+.review-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px}
+.rc-stars{color:var(--gold);font-size:0.9rem;margin-bottom:8px}
+.rc-text{font-size:0.85rem;color:var(--muted);line-height:1.6;margin-bottom:12px}
+.rc-author{font-size:0.75rem;color:var(--cream);font-weight:500}
+.rc-date{font-size:0.7rem;color:var(--muted)}
+.rating-summary{display:flex;align-items:center;gap:24px;margin:24px 0;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:8px}
+.rs-big{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--gold)}
+.rs-label{font-size:0.75rem;color:var(--muted)}
+.stars-big{font-size:1.3rem;color:var(--gold);margin:4px 0}
+
+/* FEEDBACK FORM */
+.star-picker{display:flex;gap:4px;margin-bottom:4px}
+.star-pick{font-size:1.4rem;cursor:pointer;color:var(--muted);transition:color 0.1s}
+.star-pick.on{color:var(--gold)}
+
+/* LOCATION MAP */
+.map-placeholder{background:var(--surface);border:1px solid var(--border);border-radius:8px;height:280px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;font-size:2rem;margin-bottom:24px}
+.map-placeholder p{font-size:0.85rem;color:var(--muted)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+@media(max-width:600px){.contact-grid{grid-template-columns:1fr}}
+.contact-item{display:flex;gap:14px;align-items:flex-start;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
+.ci-icon2{font-size:1.4rem}
+.ci-label2{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.ci-val2{font-size:0.88rem;color:var(--cream)}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:40px}
+@media(max-width:700px){.about-grid{grid-template-columns:1fr}}
+.value-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:24px}
+.val-card{padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:6px;text-align:center}
+.val-icon{font-size:1.8rem;margin-bottom:8px}
+.val-title{font-size:0.85rem;font-weight:600;color:var(--cream);margin-bottom:4px}
+.val-desc{font-size:0.78rem;color:var(--muted);line-height:1.5}
+
+/* ADMIN */
+.admin-sidebar{width:200px;background:var(--surface);border-right:1px solid var(--border);min-height:calc(100vh - 60px);padding:20px 0;position:fixed;left:0;top:60px}
+.admin-body{margin-left:200px;padding:32px}
+@media(max-width:700px){.admin-sidebar{display:none}.admin-body{margin-left:0}}
+.sidebar-link{display:block;padding:9px 20px;font-size:0.8rem;color:var(--muted);cursor:pointer;transition:all 0.15s;border-left:2px solid transparent}
+.sidebar-link:hover,.sidebar-link.active{color:var(--gold);background:rgba(201,168,76,0.05);border-left-color:var(--gold)}
+.stat-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:32px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px}
+.stat-val{font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:var(--gold)}
+.stat-label{font-size:0.75rem;color:var(--muted);margin-top:4px}
+.table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+table{width:100%;border-collapse:collapse}
+th{padding:10px 14px;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-align:left;border-bottom:1px solid var(--border)}
+td{padding:10px 14px;font-size:0.82rem;color:var(--text);border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,0.02)}
+.status-pill{display:inline-block;font-size:0.65rem;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:0.08em}
+.s-pending{background:rgba(201,168,76,0.1);color:var(--gold)}
+.s-confirmed{background:rgba(34,197,94,0.1);color:#22c55e}
+.s-done{background:rgba(100,100,100,0.15);color:var(--muted)}
+
+/* POLICIES */
+.policy-body{max-width:720px;margin:0 auto;padding:60px 24px}
+.policy-body h2{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--cream);margin:32px 0 12px}
+.policy-body p{font-size:0.88rem;color:var(--muted);line-height:1.8;margin-bottom:12px}
+.policy-body ul{padding-left:20px;margin-bottom:12px}
+.policy-body ul li{font-size:0.88rem;color:var(--muted);margin-bottom:6px;line-height:1.7}
+
+/* STEP INDICATOR */
+.steps{display:flex;gap:0;margin-bottom:28px}
+.step{flex:1;text-align:center;padding:10px;font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--border)}
+.step.active{color:var(--gold);border-bottom-color:var(--gold)}
+.step.done{color:var(--muted);border-bottom-color:rgba(201,168,76,0.3)}
+
+/* OFFERS */
+.offer-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:32px}
+.offer-card{background:linear-gradient(135deg,var(--surface) 0%,rgba(201,168,76,0.04) 100%);border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:24px;position:relative}
+.offer-badge{display:inline-block;background:var(--gold);color:#0d0d0d;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;padding:3px 10px;border-radius:2px;margin-bottom:12px}
+.offer-title{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--cream);margin-bottom:6px}
+.offer-desc{font-size:0.8rem;color:var(--muted);line-height:1.6}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(201,168,76,0.2);border-radius:3px}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp 0.5s ease both}
+.delay-1{animation-delay:0.1s}
+.delay-2{animation-delay:0.2s}
+.delay-3{animation-delay:0.3s}
+
+.gold-line{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.2;margin:40px 0}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')"><img src="dfl.jpeg" alt="DFL" width="20%"> DuwakotFoodLand</div>
+  <div class="nav-links" id="navLinks">
+    <span class="nav-link active" onclick="showPage('home')">Home</span>
+    <span class="nav-link" onclick="showPage('restaurant')">Restaurant</span>
+    <span class="nav-link" onclick="showPage('carwash')">Car Wash</span>
+    <span class="nav-link" onclick="showPage('bookings')">Bookings</span>
+    <span class="nav-link" onclick="showPage('order')">Order Online</span>
+    <span class="nav-link" onclick="showPage('location')">Location</span>
+    <span class="nav-link" onclick="showPage('gallery')">Gallery</span>
+    <span class="nav-link" onclick="showPage('reviews')">Reviews</span>
+    <span class="nav-link" onclick="showPage('about')">About</span>
+    <span class="nav-link" onclick="showPage('admin')" style="color:var(--muted);font-size:0.7rem">Admin</span>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- CART FAB -->
+<button id="cart-fab" onclick="openCart()" style="display:none">
+  🛒 Cart <span class="fab-badge" id="fab-badge">0</span>
+</button>
+
+<!-- CART PANEL -->
+<div class="panel-overlay" id="overlay" onclick="closeCart()"></div>
+<div id="cart-panel">
+  <div class="cart-head">
+    <h3>Your Order</h3>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p style="color:var(--muted);font-size:0.85rem;text-align:center;padding:40px 0">Your cart is empty</p>
+  </div>
+  <div class="cart-foot">
+    <div class="totals-row"><span>Subtotal</span><span id="c-sub">Rs 0</span></div>
+    <div class="totals-row"><span>VAT 13%</span><span id="c-tax">Rs 0</span></div>
+    <div class="totals-row"><span>Service Charge 10%</span><span id="c-sc">Rs 0</span></div>
+    <div class="totals-row total"><span>Total</span><span id="c-total">Rs 0</span></div>
+    <textarea class="notes-area" id="cart-notes" placeholder="Special instructions / notes…" rows="2"></textarea>
+    <button class="btn-pay" id="pay-btn" disabled onclick="showCheckoutModal()">Proceed to Payment</button>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-wrap" id="checkout-modal">
+  <div class="modal">
+    <h2>🧾 Confirm Order</h2>
+    <p class="sub">Review your order before confirming</p>
+    <div id="modal-items"></div>
+    <div class="divider" style="margin:16px 0"></div>
+    <div style="font-size:0.83rem;margin-bottom:4px;display:flex;justify-content:space-between;color:var(--muted)"><span>Subtotal</span><span id="m-sub"></span></div>
+    <div style="font-size:0.83rem;margin-bottom:4px;display:flex;justify-content:space-between;color:var(--muted)"><span>VAT 13%</span><span id="m-tax"></span></div>
+    <div style="font-size:0.83rem;margin-bottom:12px;display:flex;justify-content:space-between;color:var(--muted)"><span>Service 10%</span><span id="m-sc"></span></div>
+    <div style="font-size:1rem;font-weight:700;display:flex;justify-content:space-between;color:var(--cream);margin-bottom:20px"><span>Total</span><span id="m-total" style="color:var(--gold);font-family:'Fraunces',serif;font-size:1.2rem"></span></div>
+    <div id="modal-notes" style="font-size:0.78rem;color:var(--muted);margin-bottom:16px"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <button class="btn-outline" onclick="closeCheckout()">Cancel</button>
+      <button class="btn-primary" onclick="confirmOrder()">✓ Confirm & Pay</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-wrap" id="success-modal">
+  <div class="modal" style="text-align:center">
+    <div style="font-size:3rem;margin-bottom:12px">✅</div>
+    <h2 style="margin-bottom:8px">Order Placed!</h2>
+    <p style="color:var(--muted);font-size:0.85rem;margin-bottom:20px">Your order has been recorded. Estimated wait: 20–30 mins.</p>
+    <div id="suc-details" style="background:var(--bg);border-radius:6px;padding:16px;margin-bottom:20px;text-align:left;font-size:0.82rem;color:var(--muted)"></div>
+    <button class="btn-primary" onclick="closeSuccess()">Done</button>
+  </div>
+</div>
+
+<!-- BOOKING SUCCESS -->
+<div class="modal-wrap" id="book-success">
+  <div class="modal" style="text-align:center">
+    <div style="font-size:3rem;margin-bottom:12px">📅</div>
+    <h2 style="margin-bottom:8px">Booking Confirmed!</h2>
+    <p style="color:var(--muted);font-size:0.85rem;margin-bottom:20px" id="book-confirm-text"></p>
+    <button class="btn-primary" onclick="document.getElementById('book-success').classList.remove('show')">Done</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- ══════════════════════════════════ PAGE: HOME ══════════════════════════════════ -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <span class="tag fade-up"Bhaktapur's Favourite Spot</span>
+    <h1 class="fade-up delay-1">Duwakot <em>Food</em><br>Land</h1>
+    <p class="fade-up delay-2">Authentic Nepali & Continental cuisine, premium spirits — and Nepal's finest auto spa, all under one roof.</p>
+    <div class="cta-group fade-up delay-3">
+      <button class="btn-primary" onclick="showPage('order')">🍽 Order Online</button>
+      <button class="btn-blue" onclick="showPage('carwash')">🚗 Car Wash</button>
+      <button class="btn-outline" onclick="showPage('bookings')">📅 Reserve Table</button>
+    </div>
+  </section>
+
+  <!-- Offers -->
+  <div class="section">
+    <p class="section-tag">Current Offers</p>
+    <h2 class="section-title">Today's Deals</h2>
+    <div class="offer-cards">
+      <div class="offer-card">
+        <span class="offer-badge">HAPPY HOUR</span>
+        <div class="offer-title">50% Off Selected Drinks</div>
+        <div class="offer-desc">Every day 4–7 PM on local spirits and draught beers. Show this page to redeem.</div>
+      </div>
+      <div class="offer-card">
+        <span class="offer-badge">COMBO</span>
+        <div class="offer-title">Khana Set + Drink</div>
+        <div class="offer-desc">Any khaja set paired with a soft drink for only Rs 350. Dine-in only.</div>
+      </div>
+      <div class="offer-card">
+        <span class="offer-badge">CAR WASH</span>
+        <div class="offer-title">Wash + Meal Bundle</div>
+        <div class="offer-desc">Get a free basic car wash with any dine-in bill over Rs 1,500.</div>
+      </div>
+    </div>
+
+    <div class="gold-line"></div>
+
+    <!-- Info Cards -->
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="ic-icon">🕐</div>
+        <div class="ic-label">Hours</div>
+        <div class="ic-val">7:00 AM – 11:00 PM</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-icon">📍</div>
+        <div class="ic-label">Location</div>
+        <div class="ic-val">Duwakot, Bhaktapur</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-icon">📞</div>
+        <div class="ic-label">Phone</div>
+        <div class="ic-val">+977 01-XXXXXXX</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-icon">🅿️</div>
+        <div class="ic-label">Parking</div>
+        <div class="ic-val">Free Parking Available</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-icon">🍺</div>
+        <div class="ic-label">Bar</div>
+        <div class="ic-val">Full Bar & Hookah</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-icon">🚗</div>
+        <div class="ic-label">Auto Spa</div>
+        <div class="ic-val">Open Daily</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ PAGE: RESTAURANT ══════════════════════════════════ -->
+<div class="page" id="page-restaurant">
+  <div class="section">
+    <p class="section-tag">Dine With Us</p>
+    <h2 class="section-title">Our Menu</h2>
+    <p class="section-sub">Over 300 items — Nepali favourites, Continental classics, beverages & more.</p>
+    <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">
+      <button class="btn-primary" onclick="showPage('order')">Order Online</button>
+      <button class="btn-outline" onclick="showPage('bookings')">Reserve a Table</button>
+    </div>
+    <div class="gold-line"></div>
+    <!-- Embedded menu preview -->
+    <div id="restaurant-menu-wrap"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ PAGE: CARWASH ══════════════════════════════════ -->
+<div class="page" id="page-carwash">
+  <div class="section">
+    <p class="section-tag">Auto Spa</p>
+    <h2 class="section-title">DFL Auto Spa</h2>
+    <p class="section-sub">Professional car washing & detailing while you dine. Schedule online or walk in.</p>
+
+    <div class="wash-cards">
+      <div class="wash-card">
+        <h3>Basic Wash</h3>
+        <div class="wash-price">Rs 300</div>
+        <ul class="wash-features">
+          <li>Exterior hand wash</li>
+          <li>Rinse & dry</li>
+          <li>Tyre clean</li>
+          <li>Window wipe</li>
+        </ul>
+        <button class="btn-outline" onclick="showPage('bookings');setWashType('Basic Wash')">Schedule →</button>
+      </div>
+      <div class="wash-card featured">
+        <h3>Premium Wash</h3>
+        <div class="wash-price" style="color:var(--blue)">Rs 600</div>
+        <ul class="wash-features">
+          <li>Full exterior wash</li>
+          <li>Interior vacuum</li>
+          <li>Dashboard wipe</li>
+          <li>Glass clean (all)</li>
+          <li>Air freshener</li>
+        </ul>
+        <button class="btn-blue" onclick="showPage('bookings');setWashType('Premium Wash')">Schedule →</button>
+      </div>
+      <div class="wash-card">
+        <h3>Full Detailing</h3>
+        <div class="wash-price">Rs 1,500</div>
+        <ul class="wash-features">
+          <li>Everything in Premium</li>
+          <li>Clay bar treatment</li>
+          <li>Hand wax & polish</li>
+          <li>Engine bay clean</li>
+          <li>Leather condition</li>
+        </ul>
+        <button class="btn-outline" onclick="showPage('bookings');setWashType('Full Detailing')">Schedule →</button>
+      </div>
+      <div class="wash-card">
+        <h3>Bike Wash</h3>
+        <div class="wash-price">Rs 150</div>
+        <ul class="wash-features">
+          <li>Full body wash</li>
+          <li>Chain clean</li>
+          <li>Tyre scrub</li>
+        </ul>
+        <button class="btn-outline" onclick="showPage('bookings');setWashType('Bike Wash')">Schedule →</button>
+      </div>
+    </div>
+
+    <div class="gold-line"></div>
+    <p class="section-tag">Add-ons</p>
+    <div class="info-cards" style="margin-top:16px">
+      <div class="info-card"><div class="ic-icon">🌸</div><div class="ic-label">Air Freshener</div><div class="ic-val">Rs 50</div></div>
+      <div class="info-card"><div class="ic-icon">✨</div><div class="ic-label">Wax Polish</div><div class="ic-val">Rs 300</div></div>
+      <div class="info-card"><div class="ic-icon">🪟</div><div class="ic-label">Tint Removal</div><div class="ic-val">Rs 200</div></div>
+      <div class="info-card"><div class="ic-icon">🛡</div><div class="ic-label">Paint Protection</div><div class="ic-val">Rs 500</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ PAGE: BOOKINGS ══════════════════════════════════ -->
+<div class="page" id="page-bookings">
+  <div class="section" style="max-width:720px">
+    <p class="section-tag">Reservations</p>
+    <h2 class="section-title">Book a Table / Car Wash</h2>
+    <div class="steps">
+      <div class="step active" id="bstep1">① Date</div>
+      <div class="step" id="bstep2">② Time</div>
+      <div class="step" id="bstep3">③ Details</div>
+      <div class="step" id="bstep4">④ Confirm</div>
+    </div>
+
+    <!-- Step 1: Calendar -->
+    <div id="b-step1">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+        <button onclick="prevMonth()" class="btn-outline" style="padding:6px 12px;font-size:0.8rem">←</button>
+        <span id="cal-month" style="font-family:'Fraunces',serif;font-size:1.1rem;color:var(--cream)"></span>
+        <button onclick="nextMonth()" class="btn-outline" style="padding:6px 12px;font-size:0.8rem">→</button>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+      <p style="font-size:0.75rem;color:var(--muted);margin-top:12px">Select an available date to continue.</p>
+    </div>
+
+    <!-- Step 2: Time -->
+    <div id="b-step2" style="display:none">
+      <p style="font-size:0.85rem;color:var(--cream);margin-bottom:12px">Select a time for <span id="b-chosen-date" style="color:var(--gold)"></span></p>
+      <div class="form-group">
+        <label>Booking Type</label>
+        <select id="b-type" onchange="updateTimeSlots()">
+          <option>Table Reservation</option>
+          <option id="wash-opt">Basic Wash</option>
+          <option>Premium Wash</option>
+          <option>Full Detailing</option>
+          <option>Bike Wash</option>
+        </select>
+      </div>
+      <div class="timeslots" id="timeslots"></div>
+      <button class="btn-outline" onclick="bBack(1)" style="margin-top:16px">← Back</button>
+    </div>
+
+    <!-- Step 3: Details -->
+    <div id="b-step3" style="display:none">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input id="b-name" type="text" placeholder="Your name">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Phone</label>
+          <input id="b-phone" type="tel" placeholder="+977 98XXXXXXXX">
+        </div>
+        <div class="form-group">
+          <label>Guests (if table)</label>
+          <select id="b-guests">
+            <option>1</option><option>2</option><option selected>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8+</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Special Requests</label>
+        <textarea id="b-notes" rows="2" placeholder="Any notes (e.g. birthday, wheelchair access, car model…)"></textarea>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="btn-outline" onclick="bBack(2)">← Back</button>
+        <button class="btn-primary" onclick="bNext(4)">Review →</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Confirm -->
+    <div id="b-step4" style="display:none">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px;margin-bottom:20px" id="b-summary"></div>
+      <div style="display:flex;gap:10px">
+        <button class="btn-outline" onclick="bBack(3)">← Back</button>
+        <button class="btn-primary" onclick="confirmBooking()">✓ Confirm Booking</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ PAGE: ORDER ONLINE ══════════════════════════════════ -->
+<div class="page" id="page-order">
+  <div class="section">
+    <p class="section-tag">Order Online</p>
+    <h2 class="section-title">Full Menu</h2>
+    <p class="section-sub">Browse all items, add to cart, and pay securely.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:20px;margin-bottom:12px">
+      <div class="search-bar" style="margin-bottom:0">
+        <span class="si">🔍</span>
+        <input type="text" id="menu-search" placeholder="Search menu…" oninput="renderOrderMenu()">
+      </div>
+    </div>
+    <div class="menu-cats" id="order-cats"></div>
+    <div class="menu-grid" id="order-grid"></div>
+    <p id="order-empty" class="hidden" style="text-align:center;padding:40px;color:var(--muted)">No items found.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ PAGE: LOCATION ══════════════════════════════════ -->
+<div class="page" id="page-location">
+  <div class="section">
+    <p class="section-tag">Find Us</p>
+    <h2 class="section-title">Location & Contact</h2>
+    <div class="map-placeholder">
+      <span>🗺</span>
+      <p>Duwakot, Bhaktapur — Near Bhaktapur Durbar Square</p>
+      <button class="btn-outline" style="font-size:0.78rem;padding:8px 16px" onclick="window.open('https://maps.google.com?q=Duwakot+Bhaktapur','_blank')">Open in Google Maps</button>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-item"><div class="ci-icon2">📍</div><div><div class="ci-label2">Address</div><div class="ci-val2">Duwakot, Bhaktapur 44600, Nepal</div></div></div>
+      <div class="contact-item"><div class="ci-icon2">📞</div><div><div class="ci-label2">Phone</div><div class="ci-val2">+977 01-XXXXXXX<br>+977 98XXXXXXXX</div></div></div>
+      <div class="contact-item"><div class="ci-icon2">🕐</div><div><div class="ci-label2">Hours</div><div class="ci-val2">Mon–Sun: 7:00 AM – 11:00 PM<br>Kitchen closes at 10:30 PM</div></div></div>
+      <div class="contact-item"><div class="ci-icon2">✉️</div><div><div class="ci-label2">Email</div><div class="ci-val2">info@duwakotfoodland.com</div></div></div>
+    </div>
+    <div class="gold-line"></div>
+    <p class="section-tag">Send Us a Message</p>
+    <div style="max-width:480px;margin-top:20px">
+      <div class="form-group"><label>Name</label><input type="text" placeholder="Your name"></div>
+      <div class="form-group"><label>Email / Phone</label><input type="text" placeholder="Contact info"></div>
+      <div class="form-group"><label>Message</label><textarea rows="4" placeholder="How can we help?"></textarea></div>
+      <button class="btn-primary" onclick="toast('✓ Message sent! We\'ll reply soon.')">Send Message</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ PAGE: GALLERY ══════════════════════════════════ -->
+<div class="page" id="page-gallery">
+  <div class="section">
+    <p class="section-tag">Visual Tour</p>
+    <h2 class="section-title">Gallery</h2>
+    <div style="display:flex;gap:8px;margin:16px 0;flex-wrap:wrap" id="gal-cats">
+      <button class="cat-btn active" onclick="filterGal('all',this)">All</button>
+      <button class="cat-btn" onclick="filterGal('food',this)">Food</button>
+      <button class="cat-btn" onclick="filterGal('facility',this)">Facility</button>
+      <button class="cat-btn" onclick="filterGal('before-after',this)">Before & After</button>
+    </div>
+    <div class="gallery-grid" id="gal-grid"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ PAGE: REVIEWS ══════════════════════════════════ -->
+<div class="page" id="page-reviews">
+  <div class="section">
+    <p class="section-tag">What People Say</p>
+    <h2 class="section-title">Reviews & Ratings</h2>
+    <div class="rating-summary">
+      <div>
+        <div class="rs-big">4.6</div>
+        <div class="stars-big">★★★★½</div>
+        <div class="rs-label">128 reviews</div>
+      </div>
+      <div style="flex:1">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem"><span style="color:var(--muted);width:16px">5</span><div style="flex:1;height:6px;background:var(--surface2);border-radius:3px"><div style="width:68%;height:100%;background:var(--gold);border-radius:3px"></div></div><span style="color:var(--muted)">68%</span></div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem"><span style="color:var(--muted);width:16px">4</span><div style="flex:1;height:6px;background:var(--surface2);border-radius:3px"><div style="width:22%;height:100%;background:var(--gold);border-radius:3px;opacity:0.7"></div></div><span style="color:var(--muted)">22%</span></div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem"><span style="color:var(--muted);width:16px">3</span><div style="flex:1;height:6px;background:var(--surface2);border-radius:3px"><div style="width:7%;height:100%;background:var(--gold);border-radius:3px;opacity:0.5"></div></div><span style="color:var(--muted)">7%</span></div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem"><span style="color:var(--muted);width:16px">2</span><div style="flex:1;height:6px;background:var(--surface2);border-radius:3px"><div style="width:2%;height:100%;background:var(--gold);border-radius:3px;opacity:0.3"></div></div><span style="color:var(--muted)">2%</span></div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem"><span style="color:var(--muted);width:16px">1</span><div style="flex:1;height:6px;background:var(--surface2);border-radius:3px"><div style="width:1%;height:100%;background:var(--gold);border-radius:3px;opacity:0.2"></div></div><span style="color:var(--muted)">1%</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="review-cards" id="review-cards"></div>
+    <div class="gold-line"></div>
+    <p class="section-tag">Leave a Review</p>
+    <div style="max-width:500px;margin-top:20px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px">
+      <div class="form-group">
+        <label>Your Rating</label>
+        <div class="star-picker" id="star-picker">
+          <span class="star-pick" data-v="1" onclick="setStars(1)">★</span>
+          <span class="star-pick" data-v="2" onclick="setStars(2)">★</span>
+          <span class="star-pick" data-v="3" onclick="setStars(3)">★</span>
+          <span class="star-pick" data-v="4" onclick="setStars(4)">★</span>
+          <span class="star-pick" data-v="5" onclick="setStars(5)">★</span>
+        </div>
+      </div>
+      <div class="form-group"><label>Name</label><input type="text" id="rv-name" placeholder="Your name"></div>
+      <div class="form-group"><label>Review</label><textarea id="rv-text" rows="3" placeholder="Tell us about your experience…"></textarea></div>
+      <button class="btn-primary" onclick="submitReview()">Submit Review</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ PAGE: ABOUT ══════════════════════════════════ -->
+<div class="page" id="page-about">
+  <div class="section">
+    <p class="section-tag">Our Story</p>
+    <h2 class="section-title">About Duwakot FoodLand</h2>
+    <div class="about-grid">
+      <div>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.9rem;margin-bottom:16px">Founded in Duwakot, Bhaktapur, Duwakot FoodLand started as a humble neighbourhood eatery serving authentic Nepali snacks and meals. Over the years, we've grown into a full-service dining destination — spanning a kitchen, a bar, a café, and Nepal's favourite auto spa, all under one roof.</p>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.9rem">Our menu celebrates the richness of Nepali cuisine — from sekuwa and momo to biryanis and continental sizzlers — alongside an extensive drinks menu and café offerings.</p>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:32px;text-align:center">
+        <div style="font-size:4rem;margin-bottom:12px">🏔</div>
+        <div class="fraunces" style="font-size:1.5rem;color:var(--cream)">Since 2010</div>
+        <div style="color:var(--muted);font-size:0.83rem;margin-top:4px">Serving Bhaktapur with pride</div>
+      </div>
+    </div>
+    <div class="gold-line"></div>
+    <p class="section-tag">Our Values</p>
+    <div class="value-cards">
+      <div class="val-card"><div class="val-icon">🤝</div><div class="val-title">Community First</div><div class="val-desc">We source locally, hire locally, and give back to our neighbourhood.</div></div>
+      <div class="val-card"><div class="val-icon">🌿</div><div class="val-title">Fresh Always</div><div class="val-desc">Ingredients sourced daily from local markets — no shortcuts.</div></div>
+      <div class="val-card"><div class="val-icon">❤️</div><div class="val-title">Made with Love</div><div class="val-desc">Every dish prepared with care by our experienced kitchen team.</div></div>
+      <div class="val-card"><div class="val-icon">✨</div><div class="val-title">Clean & Welcoming</div><div class="val-desc">A space you'll want to return to — for food, drinks, or a fresh car.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ PAGE: POLICIES ══════════════════════════════════ -->
+<div class="page" id="page-policies">
+  <div class="policy-body">
+    <div class="section-tag" style="margin-bottom:8px">Legal</div>
+    <h1 class="fraunces" style="font-size:2.2rem;color:var(--cream);margin-bottom:4px">Policies</h1>
+    <p style="color:var(--muted);font-size:0.83rem;margin-bottom:32px">Last updated: January 2025</p>
+    <div class="divider" style="margin-bottom:32px"></div>
+    <h2>Privacy Policy</h2>
+    <p>We collect only the information you provide when making a booking or placing an order: your name, phone number, and order details. This information is used solely to process your request and is not shared with third parties.</p>
+    <p>We do not store payment card details. All payments are handled in person or through trusted payment gateways.</p>
+    <h2>Terms of Service</h2>
+    <ul>
+      <li>Reservations must be cancelled at least 2 hours in advance or may be subject to a cancellation fee.</li>
+      <li>All prices are in Nepalese Rupees (NPR) and include applicable taxes where stated.</li>
+      <li>The restaurant reserves the right to refuse service at its discretion.</li>
+      <li>Outside food and beverages are not permitted.</li>
+      <li>Car wash services are subject to weather conditions and queue availability.</li>
+    </ul>
+    <h2>Refund Policy</h2>
+    <p>Dine-in orders are non-refundable once prepared. If you experience a quality issue, please speak to the manager on duty immediately. Car wash refunds are handled case-by-case.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ PAGE: ADMIN ══════════════════════════════════ -->
+<div class="page" id="page-admin">
+  <div id="admin-login" style="display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 60px)">
+    <div style="width:340px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:32px">
+      <div style="text-align:center;margin-bottom:24px">
+        <div style="font-size:2rem;margin-bottom:8px">🔐</div>
+        <div class="fraunces" style="font-size:1.4rem;color:var(--cream)">Admin Login</div>
+      </div>
+      <div class="form-group"><label>Username</label><input id="adm-user" type="text" placeholder="admin"></div>
+      <div class="form-group"><label>Password</label><input id="adm-pass" type="password" placeholder="••••••••"></div>
+      <button class="btn-primary" style="width:100%;margin-top:4px" onclick="adminLogin()">Login</button>
+    </div>
+  </div>
+
+  <div id="admin-dash" style="display:none">
+    <div class="admin-sidebar">
+      <div style="padding:16px 20px 8px;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)">Dashboard</div>
+      <a class="sidebar-link active" onclick="showAdminTab('overview',this)">📊 Overview</a>
+      <a class="sidebar-link" onclick="showAdminTab('bookings',this)">📅 Bookings</a>
+      <a class="sidebar-link" onclick="showAdminTab('orders',this)">🧾 Orders</a>
+      <a class="sidebar-link" onclick="showAdminTab('reviews',this)">⭐ Reviews</a>
+      <a class="sidebar-link" onclick="showAdminTab('settings',this)">⚙️ Settings</a>
+      <div style="padding:16px 20px 8px;margin-top:12px;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)">Account</div>
+      <a class="sidebar-link" onclick="adminLogout()">🚪 Logout</a>
+    </div>
+    <div class="admin-body">
+      <!-- Overview -->
+      <div id="adm-overview">
+        <div style="font-family:'Fraunces',serif;font-size:1.6rem;color:var(--cream);margin-bottom:20px">Dashboard Overview</div>
+        <div class="stat-cards" id="stat-cards"></div>
+        <p style="font-family:'Fraunces',serif;font-size:1.1rem;color:var(--cream);margin-bottom:12px">Recent Orders</p>
+        <div class="table-wrap" id="admin-orders-table"></div>
+      </div>
+      <!-- Bookings -->
+      <div id="adm-bookings" style="display:none">
+        <div style="font-family:'Fraunces',serif;font-size:1.6rem;color:var(--cream);margin-bottom:20px">Bookings</div>
+        <div class="table-wrap" id="admin-bookings-table"></div>
+      </div>
+      <!-- Orders -->
+      <div id="adm-orders" style="display:none">
+        <div style="font-family:'Fraunces',serif;font-size:1.6rem;color:var(--cream);margin-bottom:20px">All Orders</div>
+        <div class="table-wrap" id="admin-all-orders-table"></div>
+      </div>
+      <!-- Reviews -->
+      <div id="adm-reviews" style="display:none">
+        <div style="font-family:'Fraunces',serif;font-size:1.6rem;color:var(--cream);margin-bottom:20px">Reviews</div>
+        <div id="admin-reviews-list"></div>
+      </div>
+      <!-- Settings -->
+      <div id="adm-settings" style="display:none">
+        <div style="font-family:'Fraunces',serif;font-size:1.6rem;color:var(--cream);margin-bottom:20px">Settings</div>
+        <div style="max-width:480px">
+          <div class="form-group"><label>Restaurant Name</label><input value="DFL" type="text"></div>
+          <div class="form-group"><label>Tagline</label><input value="Authentic Nepali & Continental Cuisine" type="text"></div>
+          <div class="form-group"><label>Phone</label><input value="+977 01-XXXXXXX" type="text"></div>
+          <div class="form-group"><label>Opening Time</label><input value="07:00" type="time"></div>
+          <div class="form-group"><label>Closing Time</label><input value="23:00" type="time"></div>
+          <button class="btn-primary" onclick="toast('✓ Settings saved!')">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════
+// DATA
+// ══════════════════════════════════
+const MENU_DATA = [
+{"code":"IC34","dept":"cafe","name":"IML Big Cup100ml Chocolate","price":90},
+{"code":"IC33","dept":"cafe","name":"Pista Kulfi","price":50},
+{"code":"IC32","dept":"cafe","name":"Frozen Dessert","price":20},
+{"code":"IC31","dept":"cafe","name":"Oreo Delight","price":125},
+{"code":"CA8","dept":"bar","name":"CANVAS Sweet White Wine","price":1240},
+{"code":"BO2","dept":"bar","name":"Bottega Wine","price":3250},
+{"code":"BU33","dept":"kitchen","name":"Buff Sausage","price":350},
+{"code":"ST4","dept":"cafe","name":"Strawberry 500ml","price":250},
+{"code":"LO1","dept":"cafe","name":"21 Love 500ml","price":275},
+{"code":"BU32","dept":"cafe","name":"Butterscotch 500ml","price":275},
+{"code":"VA4","dept":"cafe","name":"Vanilla 500ml","price":250},
+{"code":"TU2","dept":"bar","name":"Tuborg Can (500ml)","price":440},
+{"code":"BE2","dept":"kitchen","name":"Beatenrice1","price":100},
+{"code":"RE2","dept":"cafe","name":"Red Bull","price":155},
+{"code":"VO5","dept":"bar","name":"8848 Vodka (30ml)","price":130},
+{"code":"HB6","dept":"kitchen","name":"Toast 2 Pics With Jambutter","price":80},
+{"code":"HB5","dept":"kitchen","name":"Boiled Egg (2 Egg)","price":120},
+{"code":"HB4","dept":"kitchen","name":"Fried Egg","price":130},
+{"code":"HB3","dept":"kitchen","name":"Cheese Tomato Omlette","price":170},
+{"code":"HB2","dept":"kitchen","name":"Pancake","price":120},
+{"code":"HB1","dept":"kitchen","name":"Hamro Breakfast","price":350},
+{"code":"RA2","dept":"kitchen","name":"Rasin Salad","price":350},
+{"code":"BU31","dept":"kitchen","name":"Buff Steak","price":450},
+{"code":"PO18","dept":"kitchen","name":"Pork Stick","price":450},
+{"code":"CH64","dept":"kitchen","name":"Chicken Steak","price":360},
+{"code":"PO17","dept":"kitchen","name":"Pork Chop","price":450},
+{"code":"GR3","dept":"kitchen","name":"Grilled Pork","price":450},
+{"code":"RO2","dept":"kitchen","name":"Roast Pork","price":450},
+{"code":"GR2","dept":"kitchen","name":"Grilled Fish","price":380},
+{"code":"RO1","dept":"kitchen","name":"Roti","price":40},
+{"code":"PL6","dept":"kitchen","name":"Plain Naan","price":100},
+{"code":"GA1","dept":"kitchen","name":"Garlic Butter Naan","price":150},
+{"code":"BU30","dept":"kitchen","name":"Buff Keema Naan","price":160},
+{"code":"CH63","dept":"kitchen","name":"Chicken Keema Naan","price":160},
+{"code":"EG8","dept":"kitchen","name":"Egg Burger","price":220},
+{"code":"MI26","dept":"kitchen","name":"Mix Spring Roll","price":280},
+{"code":"CH62","dept":"kitchen","name":"Chinese Chopsuey","price":280},
+{"code":"EG7","dept":"kitchen","name":"Egg Thendruk","price":180},
+{"code":"MI25","dept":"kitchen","name":"Mix Thendruk","price":260},
+{"code":"HO12","dept":"kitchen","name":"Hot Chicken Garlic","price":290},
+{"code":"CH61","dept":"kitchen","name":"Chicken Wings Grill","price":320},
+{"code":"CH60","dept":"kitchen","name":"Cheese Pakauda","price":370},
+{"code":"AL4","dept":"kitchen","name":"Alu Fry","price":170},
+{"code":"AL3","dept":"kitchen","name":"Alu Fried Or Poleko","price":170},
+{"code":"AL2","dept":"kitchen","name":"Alu Chops","price":170},
+{"code":"AL1","dept":"kitchen","name":"Alu Kabab","price":160},
+{"code":"VE20","dept":"kitchen","name":"Veg Garlic Soup","price":180},
+{"code":"CH59","dept":"kitchen","name":"Cheese Tomato Egg Sandwich","price":280},
+{"code":"VA3","dept":"cafe","name":"Vanilla Icecream","price":50},
+{"code":"PL5","dept":"kitchen","name":"Plain Rice","price":150},
+{"code":"EX1","dept":"cafe","name":"Extreme Energy Drink","price":155},
+{"code":"CH58","dept":"kitchen","name":"Chicken Drumstick","price":350},
+{"code":"BU29","dept":"kitchen","name":"Buff Stick","price":450},
+{"code":"DA1","dept":"kitchen","name":"Dahi Chiura","price":300},
+{"code":"PO16","dept":"kitchen","name":"Popcorn","price":50},
+{"code":"VE19","dept":"kitchen","name":"Veg Burger","price":190},
+{"code":"OM1","dept":"kitchen","name":"Omelette Toast & Alu","price":300},
+{"code":"BR2","dept":"kitchen","name":"Bread Toast & Alu","price":200},
+{"code":"EG6","dept":"kitchen","name":"Egg Boil Piece","price":60},
+{"code":"BU28","dept":"kitchen","name":"Buff Steam Momo Half","price":85},
+{"code":"PO15","dept":"kitchen","name":"Pork Khaja Set","price":400},
+{"code":"MU12","dept":"bar","name":"Mustang 60ml","price":110},
+{"code":"HO11","dept":"kitchen","name":"Hot Wings","price":350},
+{"code":"LA1","dept":"kitchen","name":"Lasun Fry","price":100},
+{"code":"PR2","dept":"kitchen","name":"Prawn Chilli","price":550},
+{"code":"CH57","dept":"kitchen","name":"Chips Chilli","price":170},
+{"code":"MI24","dept":"cafe","name":"Mineral Water Case","price":150},
+{"code":"SP1","dept":"cafe","name":"Sprite","price":100},
+{"code":"FA1","dept":"cafe","name":"Fanta","price":100},
+{"code":"JE1","dept":"kitchen","name":"Jeera Rice","price":200},
+{"code":"WA1","dept":"kitchen","name":"Wai Wai With Egg","price":150},
+{"code":"OC9","dept":"cafe","name":"Ginger Hot Lemon Honey","price":120},
+{"code":"HO10","dept":"cafe","name":"Hot Lemon With Ginger","price":80},
+{"code":"CO3","dept":"cafe","name":"Cold Lemon","price":60},
+{"code":"JA4","dept":"bar","name":"Jack Daniels JD (60ml)","price":890},
+{"code":"CH56","dept":"kitchen","name":"Chicken Wrap","price":250},
+{"code":"CH55","dept":"kitchen","name":"Chicken Noodles Fried","price":300},
+{"code":"CU1","dept":"kitchen","name":"Curd With Rasgula","price":150},
+{"code":"IC30","dept":"kitchen","name":"Ice Cream (Desert)","price":250},
+{"code":"CA7","dept":"kitchen","name":"Carrot Halwa","price":160},
+{"code":"FR8","dept":"kitchen","name":"Fruits Salad With Curd","price":250},
+{"code":"PO14","dept":"kitchen","name":"Pork Sekuwa (1kg)","price":1100},
+{"code":"BU27","dept":"kitchen","name":"Buff Sekuwa (1Kg)","price":1075},
+{"code":"CH54","dept":"kitchen","name":"Chicken Sekuwa (1kg)","price":1075},
+{"code":"PO13","dept":"kitchen","name":"Pork Sekuwa (500gm)","price":550},
+{"code":"BU26","dept":"kitchen","name":"Buff Sekuwa (500Gm)","price":550},
+{"code":"CH53","dept":"kitchen","name":"Chicken Sekuwa (500gm)","price":550},
+{"code":"MU11","dept":"kitchen","name":"Mushroom Pizza (Small)","price":380},
+{"code":"MU10","dept":"kitchen","name":"Mushroom Pizza (Medium)","price":480},
+{"code":"EG5","dept":"kitchen","name":"Egg Chowmein","price":180},
+{"code":"JI1","dept":"kitchen","name":"Jibro Fried","price":400},
+{"code":"CO2","dept":"cafe","name":"Coke","price":100},
+{"code":"OH3","dept":"cafe","name":"LOVE66 HOOKAH FLAVOUR","price":450},
+{"code":"KH5","dept":"bar","name":"Khukuri Rum XXX (60ml)","price":250},
+{"code":"KH4","dept":"bar","name":"Khukuri Rum XXX (90ml)","price":375},
+{"code":"SU7","dept":"cafe","name":"Sundae Cup Mango","price":90},
+{"code":"MI23","dept":"cafe","name":"Mini Choco Bar","price":30},
+{"code":"MI22","dept":"cafe","name":"Milky Bar","price":20},
+{"code":"ML8","dept":"cafe","name":"500ml 21 Love","price":240},
+{"code":"ML7","dept":"cafe","name":"500ml Butter Scotch","price":250},
+{"code":"AM4","dept":"cafe","name":"American Nuts 500ml","price":350},
+{"code":"ML6","dept":"cafe","name":"500ml Cookies & Cream","price":325},
+{"code":"ML5","dept":"cafe","name":"500ml Tutty Fruity","price":240},
+{"code":"ML4","dept":"cafe","name":"500ml Black Current","price":240},
+{"code":"ML3","dept":"cafe","name":"500ml Chocolate","price":240},
+{"code":"ML2","dept":"cafe","name":"500ml Strawberry","price":200},
+{"code":"SW3","dept":"cafe","name":"Sweetcone 110ML 21 Love","price":100},
+{"code":"SW2","dept":"cafe","name":"Sweetcone 110ML Butter Scotch","price":90},
+{"code":"SW1","dept":"cafe","name":"Sweetcone 110ML Chocolate","price":100},
+{"code":"NU1","dept":"cafe","name":"Nutty Crunch","price":80},
+{"code":"CH52","dept":"cafe","name":"Chocobar","price":70},
+{"code":"IM4","dept":"cafe","name":"IML Big Cup Special Kulfi 100ML","price":120},
+{"code":"IM3","dept":"cafe","name":"IML Big Cup Vanilla 100ML","price":75},
+{"code":"KA1","dept":"cafe","name":"Kaju Draksh 100ML","price":100},
+{"code":"IM2","dept":"cafe","name":"IML Big Cup 100ML Butterscotch","price":90},
+{"code":"IM1","dept":"cafe","name":"IML Big Cup 100ML 21 Love","price":90},
+{"code":"CH51","dept":"cafe","name":"Choco Delight","price":100},
+{"code":"SU6","dept":"cafe","name":"Sundae Cup Chocolate","price":100},
+{"code":"SU5","dept":"cafe","name":"Sundae Cup Strawberry","price":100},
+{"code":"RA1","dept":"cafe","name":"Rabdi Kulfi","price":85},
+{"code":"GI1","dept":"cafe","name":"Ginger Tea","price":60},
+{"code":"OL4","dept":"bar","name":"Old Durbar Red (60ml)","price":330},
+{"code":"VO4","dept":"bar","name":"8848 Vodka (60ml)","price":260},
+{"code":"CH50","dept":"kitchen","name":"Chatpate","price":150},
+{"code":"PO12","dept":"kitchen","name":"Pork Chilli","price":360},
+{"code":"PO11","dept":"kitchen","name":"Pork Fried","price":350},
+{"code":"FR7","dept":"cafe","name":"Fresh Lime Soda","price":150},
+{"code":"VE18","dept":"kitchen","name":"Veg Spring Roll","price":190},
+{"code":"CH49","dept":"kitchen","name":"Chicken Dhido Set","price":375},
+{"code":"BU24","dept":"kitchen","name":"Buff Chowmein","price":260},
+{"code":"AP1","dept":"bar","name":"Apple Cider","price":300},
+{"code":"CH48","dept":"kitchen","name":"Chicken Sausage","price":240},
+{"code":"CH47","dept":"kitchen","name":"Chicken Boil","price":280},
+{"code":"VE17","dept":"kitchen","name":"Veg Momo Fried","price":170},
+{"code":"BU23","dept":"kitchen","name":"Buff C Momo","price":230},
+{"code":"VE16","dept":"kitchen","name":"Veg C Momo","price":200},
+{"code":"CH46","dept":"kitchen","name":"Chicken C Momo","price":240},
+{"code":"PL4","dept":"kitchen","name":"Plain Bhatmas","price":100},
+{"code":"AA1","dept":"kitchen","name":"Aalu Paratha","price":150},
+{"code":"BR1","dept":"kitchen","name":"Bread Toast","price":100},
+{"code":"PL3","dept":"kitchen","name":"Plain Omlet","price":110},
+{"code":"MU9","dept":"kitchen","name":"Mutton Khana Set","price":450},
+{"code":"VE15","dept":"kitchen","name":"Veg Khana Set","price":260},
+{"code":"YO1","dept":"kitchen","name":"Yogurt","price":200},
+{"code":"MU8","dept":"kitchen","name":"Veg Mushroom Pizza (Large)","price":580},
+{"code":"CH45","dept":"kitchen","name":"Chicken Steam Momo (half)","price":85},
+{"code":"OC8","dept":"cafe","name":"Lemon Tea","price":60},
+{"code":"OH2","dept":"bar","name":"DOUBLE APPLE HOOKAH","price":450},
+{"code":"OH1","dept":"bar","name":"MINT FLAVOUR HOOKAH","price":450},
+{"code":"DI2","dept":"bar","name":"Divine Wine (red)","price":1085},
+{"code":"KH2","dept":"bar","name":"Khukuri Rum XXX (QTR)","price":745},
+{"code":"GU2","dept":"bar","name":"Gurkha & Guns Whisky (QTR)","price":1055},
+{"code":"GU1","dept":"bar","name":"Gurkha & Guns Whisky (750ml)","price":2105},
+{"code":"OC7","dept":"cafe","name":"Floured Cappuccino","price":200},
+{"code":"OC6","dept":"cafe","name":"Mocha Madness","price":205},
+{"code":"OC5","dept":"cafe","name":"Cafe Mocha","price":200},
+{"code":"OC4","dept":"cafe","name":"Mochaccino","price":200},
+{"code":"OC3","dept":"cafe","name":"Honey Latte","price":200},
+{"code":"OC2","dept":"cafe","name":"Caramel Latte","price":200},
+{"code":"OC1","dept":"cafe","name":"Flavoured Latte","price":200},
+{"code":"BL6","dept":"cafe","name":"Blended Lemonade","price":170},
+{"code":"BL5","dept":"cafe","name":"Blue Lagoon Mojito","price":170},
+{"code":"MA1","dept":"cafe","name":"Mango Lassi","price":225},
+{"code":"CH44","dept":"cafe","name":"Chocolate Lassi","price":180},
+{"code":"ST3","dept":"cafe","name":"Strawberry Lassi","price":180},
+{"code":"VA2","dept":"cafe","name":"Vanilla Lassi","price":180},
+{"code":"PL1","dept":"cafe","name":"Plain Lassi","price":160},
+{"code":"BA2","dept":"cafe","name":"Banana Lassi","price":180},
+{"code":"OR1","dept":"cafe","name":"Oreo Milkshake","price":195},
+{"code":"ST2","dept":"cafe","name":"Strawberry Milkshake","price":185},
+{"code":"CH43","dept":"cafe","name":"Chocolate Milkshake","price":185},
+{"code":"VA1","dept":"cafe","name":"Vanilla Milkshake","price":185},
+{"code":"MI21","dept":"cafe","name":"Mint Mojito","price":175},
+{"code":"KI2","dept":"cafe","name":"Kiwi Lime Refresher","price":170},
+{"code":"MI20","dept":"cafe","name":"Mint Lime Refresher","price":170},
+{"code":"IC29","dept":"cafe","name":"Ice Blended Coffee Frappe","price":250},
+{"code":"IC28","dept":"cafe","name":"Ice Blended Strawberry Frappe","price":250},
+{"code":"IC27","dept":"cafe","name":"Ice Blended Vanilla Frappe","price":250},
+{"code":"IC26","dept":"cafe","name":"Ice Blended Oreo Frappe","price":250},
+{"code":"IC25","dept":"cafe","name":"Ice Blended Caramel Frappe","price":250},
+{"code":"IC24","dept":"cafe","name":"Ice Blended Mocha Frappe","price":250},
+{"code":"IC23","dept":"cafe","name":"Ice Blended Choco Mint Frappe","price":250},
+{"code":"BL4","dept":"cafe","name":"Blended Mint Lemonade","price":170},
+{"code":"LE2","dept":"cafe","name":"Lemon Iced Tea","price":150},
+{"code":"PE2","dept":"cafe","name":"Peach Iced Tea","price":170},
+{"code":"LE1","dept":"cafe","name":"Lemonade","price":150},
+{"code":"FL2","dept":"cafe","name":"Flavour Americano","price":150},
+{"code":"ES5","dept":"cafe","name":"Espresso Affogato Single","price":150},
+{"code":"ES4","dept":"cafe","name":"Espresso Macchiato Double","price":150},
+{"code":"ES3","dept":"cafe","name":"Espresso Macchiato Single","price":125},
+{"code":"ES2","dept":"cafe","name":"Espresso Double","price":125},
+{"code":"ES1","dept":"cafe","name":"Espresso Single","price":100},
+{"code":"IC22","dept":"cafe","name":"Iced Mocha Madness","price":225},
+{"code":"IC21","dept":"cafe","name":"Iced Caramel Macchiato","price":225},
+{"code":"IC20","dept":"cafe","name":"Iced Mocha","price":225},
+{"code":"IC19","dept":"cafe","name":"Iced Flavoured Latte","price":225},
+{"code":"IC18","dept":"cafe","name":"Iced Flavoured Americano","price":200},
+{"code":"IC16","dept":"cafe","name":"Iced Americano","price":150},
+{"code":"HO9","dept":"cafe","name":"Hot Chocolate","price":100},
+{"code":"TO5","dept":"kitchen","name":"Toungue With Cucumber Salad","price":350},
+{"code":"PO10","dept":"kitchen","name":"Potato Chilly","price":160},
+{"code":"FI4","dept":"kitchen","name":"Fish Fried","price":380},
+{"code":"PO9","dept":"kitchen","name":"Pork Sekuwa","price":370},
+{"code":"GR1","dept":"kitchen","name":"Grill Chicken (3piece)","price":350},
+{"code":"PE1","dept":"kitchen","name":"Peanut Sadheko","price":170},
+{"code":"FR6","dept":"kitchen","name":"Buff Fried Rice","price":200},
+{"code":"BU22","dept":"kitchen","name":"Buff Chilly","price":350},
+{"code":"EG4","dept":"kitchen","name":"Egg Fried Rice","price":250},
+{"code":"MU6","dept":"kitchen","name":"Mutton Sekuwa","price":550},
+{"code":"MI19","dept":"kitchen","name":"Mix Soup","price":250},
+{"code":"EG3","dept":"kitchen","name":"Egg Curry","price":280},
+{"code":"VE14","dept":"kitchen","name":"Veg Keema Noodle","price":190},
+{"code":"CH41","dept":"kitchen","name":"Chicken Keema Noodle","price":260},
+{"code":"BU20","dept":"kitchen","name":"Buff Keema Noodle","price":260},
+{"code":"PO7","dept":"kitchen","name":"Pork Tempura","price":400},
+{"code":"CH40","dept":"kitchen","name":"Chicken Tempura","price":260},
+{"code":"TO4","dept":"kitchen","name":"Tom Kha Kung (prawn)","price":450},
+{"code":"TO3","dept":"kitchen","name":"Tom Kha Kai (chicken)","price":350},
+{"code":"WD10","dept":"kitchen","name":"Buff Burger","price":250},
+{"code":"WD9","dept":"kitchen","name":"Chicken Burger","price":260},
+{"code":"WD8","dept":"kitchen","name":"Cheese Burger","price":240},
+{"code":"WD7","dept":"kitchen","name":"Chicken Breast With White Sauce","price":450},
+{"code":"WD6","dept":"kitchen","name":"Chicken Stugana","price":450},
+{"code":"WD5","dept":"kitchen","name":"Chicken Cordon Bleu","price":450},
+{"code":"WD4","dept":"kitchen","name":"Veg Sizzler","price":270},
+{"code":"WD3","dept":"kitchen","name":"Fish Sizzler","price":460},
+{"code":"WD2","dept":"kitchen","name":"Pork Sizzler","price":460},
+{"code":"WD1","dept":"kitchen","name":"Chicken Sizzler","price":399},
+{"code":"CH24","dept":"kitchen","name":"Chicken Fry Chinese Style","price":350},
+{"code":"CH23","dept":"kitchen","name":"Chicken Sausage Chilli","price":350},
+{"code":"CH22","dept":"kitchen","name":"Chicken Leg Grill","price":360},
+{"code":"CH21","dept":"kitchen","name":"Chicken Wings Fry","price":320},
+{"code":"CH19","dept":"kitchen","name":"Chicken Leg Fry","price":350},
+{"code":"CH18","dept":"kitchen","name":"Chicken Fry","price":350},
+{"code":"BU10","dept":"kitchen","name":"Buff Sadheko","price":300},
+{"code":"PO2","dept":"kitchen","name":"Pork Sadheko","price":350},
+{"code":"MU2","dept":"kitchen","name":"Mutton Sadheko","price":500},
+{"code":"CH17","dept":"kitchen","name":"Chicken Sadheko","price":350},
+{"code":"PO1","dept":"kitchen","name":"Pork Choila","price":370},
+{"code":"MU1","dept":"kitchen","name":"Mutton Choila","price":500},
+{"code":"BU9","dept":"kitchen","name":"Buff Choila","price":350},
+{"code":"CH16","dept":"kitchen","name":"Chicken Choila","price":350},
+{"code":"LS7","dept":"kitchen","name":"Paneer Tikka","price":380},
+{"code":"LS6","dept":"kitchen","name":"Chicken Tikka","price":370},
+{"code":"LS5","dept":"kitchen","name":"Sea Kabab","price":350},
+{"code":"LS4","dept":"kitchen","name":"Tandori Kabab","price":350},
+{"code":"LS3","dept":"kitchen","name":"Tandoori Chicken Quarter","price":300},
+{"code":"LS2","dept":"kitchen","name":"Tandoori Chicken Half","price":600},
+{"code":"LS1","dept":"kitchen","name":"Tandoori Chicken Full","price":1050},
+{"code":"VS23","dept":"kitchen","name":"Mushroom Hot Garlic","price":250},
+{"code":"VS22","dept":"kitchen","name":"Mushroom Choila","price":270},
+{"code":"VS21","dept":"kitchen","name":"Mushroom Chilli","price":270},
+{"code":"VS20","dept":"kitchen","name":"Paneer Pakoda","price":380},
+{"code":"VS19","dept":"kitchen","name":"Paneer Chilli","price":380},
+{"code":"VS8","dept":"kitchen","name":"Deep Fry Aloo","price":180},
+{"code":"VS7","dept":"kitchen","name":"Grill Aloo","price":200},
+{"code":"VS14","dept":"kitchen","name":"Palpali Aloo","price":150},
+{"code":"VS4","dept":"kitchen","name":"Cheese Ball","price":250},
+{"code":"VS1","dept":"kitchen","name":"Bhatmas Sadheko","price":160},
+{"code":"MI3","dept":"kitchen","name":"Mix Pizza Large","price":750},
+{"code":"MI2","dept":"kitchen","name":"Mix Pizza Medium","price":550},
+{"code":"MI1","dept":"kitchen","name":"Mix Pizza Small","price":399},
+{"code":"CH10","dept":"kitchen","name":"Chicken Pizza Large","price":699},
+{"code":"CH9","dept":"kitchen","name":"Chicken Pizza Medium","price":499},
+{"code":"CH8","dept":"kitchen","name":"Chicken Pizza Small","price":370},
+{"code":"VE4","dept":"kitchen","name":"Veg Pizza Large","price":500},
+{"code":"VE3","dept":"kitchen","name":"Veg Pizza Medium","price":400},
+{"code":"VE2","dept":"kitchen","name":"Veg Pizza Small","price":300},
+{"code":"HO5","dept":"kitchen","name":"Hot Garlic Prawn","price":475},
+{"code":"CH7","dept":"kitchen","name":"Chicken Garlic","price":250},
+{"code":"CH6","dept":"kitchen","name":"Chicken Manchurian","price":300},
+{"code":"CH5","dept":"kitchen","name":"Chicken Sweet Corn Soup","price":250},
+{"code":"TO2","dept":"kitchen","name":"Tomato Egg Soup","price":200},
+{"code":"TO1","dept":"kitchen","name":"Tomato Soup","price":180},
+{"code":"HO2","dept":"kitchen","name":"Hot & Sour Veg Soup","price":180},
+{"code":"HO1","dept":"kitchen","name":"Hot & Sour Chicken Soup","price":240},
+{"code":"CH4","dept":"kitchen","name":"Chicken Mushroom Soup","price":250},
+{"code":"CH3","dept":"kitchen","name":"Chicken Soup","price":220},
+{"code":"CH2","dept":"kitchen","name":"Chicken Sandwich","price":280},
+{"code":"EG1","dept":"kitchen","name":"Egg Sandwich","price":250},
+{"code":"VE1","dept":"kitchen","name":"Veg Sandwich","price":180},
+{"code":"CH1","dept":"kitchen","name":"Cheese Sandwich","price":280},
+{"code":"CL1","dept":"kitchen","name":"Club Sandwich","price":350},
+{"code":"CH34","dept":"kitchen","name":"Chicken Chowmein","price":250},
+{"code":"VE13","dept":"kitchen","name":"Veg Chowmein","price":160},
+{"code":"MI15","dept":"kitchen","name":"Mix Chowmein","price":260},
+{"code":"PO6","dept":"kitchen","name":"Pork Chowmein","price":260},
+{"code":"FR4","dept":"kitchen","name":"Mix Fried Rice","price":250},
+{"code":"FR3","dept":"kitchen","name":"Veg Fried Rice","price":190},
+{"code":"FR2","dept":"kitchen","name":"Pork Fried Rice","price":270},
+{"code":"FR1","dept":"kitchen","name":"Chicken Fried Rice","price":220},
+{"code":"BU12","dept":"kitchen","name":"Buff Momo Steam","price":170},
+{"code":"BU13","dept":"kitchen","name":"Buff Momo Kothey","price":200},
+{"code":"BU14","dept":"kitchen","name":"Buff Momo Jhol","price":230},
+{"code":"BU15","dept":"kitchen","name":"Buff Momo Chilli","price":230},
+{"code":"BU16","dept":"kitchen","name":"Buff Momo Fried","price":200},
+{"code":"CH29","dept":"kitchen","name":"Chicken Momo Steam","price":170},
+{"code":"CH30","dept":"kitchen","name":"Chicken Momo Kothey","price":200},
+{"code":"CH31","dept":"kitchen","name":"Chicken Momo Jhol","price":230},
+{"code":"CH32","dept":"kitchen","name":"Chicken Momo Chilli","price":240},
+{"code":"CH33","dept":"kitchen","name":"Chicken Momo Fried","price":200},
+{"code":"VE8","dept":"kitchen","name":"Veg Momo Steam","price":150},
+{"code":"VE9","dept":"kitchen","name":"Veg Momo Kothey","price":180},
+{"code":"VE10","dept":"kitchen","name":"Veg Momo Jhol","price":190},
+{"code":"VE11","dept":"kitchen","name":"Veg Momo Chilli","price":200},
+{"code":"VE12","dept":"kitchen","name":"Veg Momo Fry","price":170},
+{"code":"SR1","dept":"kitchen","name":"Chicken Spring Roll","price":260},
+{"code":"SR2","dept":"kitchen","name":"Pork Spring Roll","price":260},
+{"code":"SR3","dept":"kitchen","name":"Buff Spring Roll","price":260},
+{"code":"SR4","dept":"kitchen","name":"Egg Spring Roll","price":190},
+{"code":"CH28","dept":"kitchen","name":"Chicken Thukpa","price":250},
+{"code":"VE7","dept":"kitchen","name":"Veg Thukpa","price":160},
+{"code":"BU11","dept":"kitchen","name":"Buff Thukpa","price":260},
+{"code":"PO5","dept":"kitchen","name":"Pork Thukpa","price":300},
+{"code":"CH27","dept":"kitchen","name":"Chicken Chopsuey","price":270},
+{"code":"VE6","dept":"kitchen","name":"Veg Chopsuey","price":250},
+{"code":"MI13","dept":"kitchen","name":"Mix Chopsuey","price":350},
+{"code":"IC7","dept":"kitchen","name":"Chicken Curry","price":350},
+{"code":"IC8","dept":"kitchen","name":"Mutton Curry","price":450},
+{"code":"IC9","dept":"kitchen","name":"Veg Curry","price":250},
+{"code":"IC10","dept":"kitchen","name":"Fish Curry","price":350},
+{"code":"IC11","dept":"kitchen","name":"Pork Curry","price":350},
+{"code":"IC12","dept":"kitchen","name":"Chicken Butter Masala","price":450},
+{"code":"IC14","dept":"kitchen","name":"Paneer Butter Masala","price":450},
+{"code":"IC3","dept":"kitchen","name":"Chicken Biryani Small","price":400},
+{"code":"IC2","dept":"kitchen","name":"Chicken Biryani Medium","price":750},
+{"code":"IC1","dept":"kitchen","name":"Chicken Biryani Large","price":1050},
+{"code":"IC5","dept":"kitchen","name":"Veg Biryani Small","price":350},
+{"code":"IC6","dept":"kitchen","name":"Veg Biryani Medium","price":600},
+{"code":"IC4","dept":"kitchen","name":"Veg Biryani Large","price":850},
+{"code":"TU1","dept":"bar","name":"Tuborg","price":525},
+{"code":"NE1","dept":"bar","name":"Nepal Ice","price":400},
+{"code":"CA4","dept":"bar","name":"Carlsberg","price":580},
+{"code":"GO3","dept":"bar","name":"Gorkha Strong Beer","price":415},
+{"code":"BA1","dept":"bar","name":"Barashinge Beer","price":490},
+{"code":"VO1","dept":"bar","name":"8848 Vodka (750ml)","price":3085},
+{"code":"HI1","dept":"bar","name":"Highlander Full","price":1300},
+{"code":"AM2","dept":"cafe","name":"Americano","price":100},
+{"code":"CA2","dept":"cafe","name":"Cappuccino","price":140},
+{"code":"CA1","dept":"cafe","name":"Cafe Latte","price":140},
+{"code":"ST1","dept":"cafe","name":"Steam Milk","price":50},
+{"code":"BL1","dept":"cafe","name":"Black Tea","price":40},
+{"code":"MI18","dept":"kitchen","name":"Mineral Water","price":50},
+{"code":"CH35","dept":"kitchen","name":"Chicken Chilly","price":300},
+{"code":"CH37","dept":"kitchen","name":"Chicken Chilli (Boneless)","price":350},
+{"code":"BU22","dept":"kitchen","name":"Buff Chilly","price":350},
+{"code":"FR5","dept":"kitchen","name":"French Fries","price":160},
+{"code":"CH38","dept":"kitchen","name":"Chicken Sekuwa","price":370},
+{"code":"BU17","dept":"kitchen","name":"Buff Sekuwa","price":300},
+{"code":"MU11","dept":"kitchen","name":"Mushroom Pizza (Small)","price":380}
+];
+
+// Build unique categories
+const ALL_CATS = ['all', 'kitchen', 'cafe', 'bar'];
+const CAT_LABELS = {all:'All', kitchen:'Kitchen 🍳', cafe:'Café ☕', bar:'Bar 🍺'};
+
+// Sub-categories map (derived from name patterns)
+function getSubCat(item) {
+  const n = item.name.toLowerCase();
+  const c = item.dept;
+  if(c==='bar') return 'bar';
+  if(c==='cafe') {
+    if(n.includes('coffee')||n.includes('latte')||n.includes('espresso')||n.includes('cappuccino')||n.includes('mocha')||n.includes('americano')||n.includes('frappe')) return 'coffee';
+    if(n.includes('lassi')||n.includes('milkshake')) return 'lassi & shakes';
+    if(n.includes('tea')||n.includes('lemon')||n.includes('mojito')||n.includes('soda')||n.includes('refresher')||n.includes('lemonade')) return 'beverages';
+    if(n.includes('kulfi')||n.includes('icecream')||n.includes('ice cream')||n.includes('sundae')||n.includes('choco')||n.includes('bar')) return 'ice cream';
+    return 'cafe';
+  }
+  if(c==='kitchen'){
+    if(n.includes('momo')) return 'momo';
+    if(n.includes('pizza')) return 'pizza';
+    if(n.includes('soup')) return 'soup';
+    if(n.includes('chowmein')||n.includes('noodle')||n.includes('thukpa')||n.includes('thenthuk')||n.includes('thendruk')) return 'noodles';
+    if(n.includes('fried rice')||n.includes('biryani')||n.includes('jeera rice')) return 'rice';
+    if(n.includes('sandwich')||n.includes('burger')||n.includes('wrap')) return 'sandwiches & burgers';
+    if(n.includes('sizzler')) return 'sizzlers';
+    if(n.includes('chopsuey')) return 'chopsuey';
+    if(n.includes('spring roll')) return 'snacks';
+    if(n.includes('sekuwa')) return 'sekuwa';
+    if(n.includes('steak')||n.includes('chop')||n.includes('grilled')||n.includes('roast')||n.includes('sausage')||n.includes('stick')) return 'grill & fry';
+    if(n.includes('curry')||n.includes('masala')||n.includes('butter')) return 'curries';
+    if(n.includes('naan')||n.includes('roti')||n.includes('paratha')) return 'bread';
+    if(n.includes('aloo')||n.includes('alu')||n.includes('veg')) return 'veg';
+    if(n.includes('salad')||n.includes('sadheko')||n.includes('choila')) return 'salad & sadheko';
+    if(n.includes('khaja set')||n.includes('dhido')||n.includes('breakfast')||n.includes('dahi chiura')) return 'sets & meals';
+    if(n.includes('dessert')||n.includes('halwa')||n.includes('curd')||n.includes('rasgula')||n.includes('ice cream')||n.includes('fruits')) return 'desserts';
+    if(n.includes('chicken')) return 'chicken';
+    if(n.includes('pork')) return 'pork';
+    if(n.includes('buff')) return 'buff';
+    if(n.includes('fish')||n.includes('prawn')) return 'seafood';
+    return 'kitchen';
+  }
+  return c;
+}
+
+// ── STATE ──
+let cart = {};
+let orders = [];
+let bookings = [];
+let reviews = [
+  {name:'Ramesh K.',rating:5,text:'Best momo in Bhaktapur Buff momo jhol is absolutely delicious. Will definitely come back.',date:'2025-01-10'},
+  {name:'Priya S.',rating:5,text:'Great atmosphere, friendly staff. The sekuwa platter was amazing and very reasonably priced.',date:'2025-01-08'},
+  {name:'David M.',rating:4,text:'Solid food and a fantastic bar selection. The car wash service was a bonus — very convenient!',date:'2025-01-05'},
+  {name:'Aakriti T.',rating:5,text:'Hamro breakfast is a must-try! The café drinks are excellent too. Love this place.',date:'2024-12-28'},
+  {name:'Bikash R.',rating:4,text:'Chicken biryani was spot on. Service was a bit slow during peak hour but food quality made up for it.',date:'2024-12-20'},
+];
+let starRating = 0;
+let activeCat = 'all';
+let activeSubCat = 'all';
+let calYear, calMonth, selectedDate = null, selectedTime = null;
+
+const Rs = n => `Rs ${Math.round(n).toLocaleString('en-NP')}`;
+
+// ── MENU RENDER ──
+function getSubCats(dept) {
+  const items = dept === 'all' ? MENU_DATA : MENU_DATA.filter(i=>i.dept===dept);
+  const cats = [...new Set(items.map(getSubCat))].sort();
+  return cats;
+}
+
+function renderOrderMenu() {
+  const q = (document.getElementById('menu-search')?.value||'').toLowerCase();
+  const catsEl = document.getElementById('order-cats');
+  const gridEl = document.getElementById('order-grid');
+  const emptyEl = document.getElementById('order-empty');
+  if(!catsEl||!gridEl) return;
+
+  // Build sub-cats
+  const subs = getSubCats(activeCat);
+  catsEl.innerHTML = `<button class="cat-btn ${activeSubCat==='all'?'active':''}" onclick="setSubCat('all')">All</button>` +
+    subs.map(s=>`<button class="cat-btn ${activeSubCat===s?'active':''}" onclick="setSubCat('${s}')">${s.charAt(0).toUpperCase()+s.slice(1)}</button>`).join('');
+
+  let items = MENU_DATA.filter(i=>{
+    const matchDept = activeCat==='all' || i.dept===activeCat;
+    const matchSub = activeSubCat==='all' || getSubCat(i)===activeSubCat;
+    const matchQ = !q || i.name.toLowerCase().includes(q) || i.code.toLowerCase().includes(q);
+    return matchDept && matchSub && matchQ;
+  });
+
+  if(!items.length){emptyEl.classList.remove('hidden');gridEl.innerHTML='';return;}
+  emptyEl.classList.add('hidden');
+  gridEl.innerHTML = items.map(item=>{
+    const qty = cart[item.code]||0;
+    return `<div class="menu-card">
+      <div class="mc-top">
+        <div>
+          <div class="mc-name">${item.name}</div>
+          <div class="mc-code">${item.code}</div>
+        </div>
+        <span class="mc-dept dept-${item.dept}">${item.dept}</span>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-price">${Rs(item.price)}</div>
+        ${qty===0?`<button class="btn-add" onclick="addToCart('${item.code}')">+ Add</button>`:
+        `<div class="qty-ctrl">
+          <button class="qty-btn" onclick="changeCartQty('${item.code}',-1)">−</button>
+          <span class="qty-num">${qty}</span>
+          <button class="qty-btn" onclick="changeCartQty('${item.code}',1)">+</button>
+        </div>`}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function setSubCat(s){activeSubCat=s;renderOrderMenu();}
+
+// Also render in restaurant page
+function renderRestaurantMenu() {
+  const wrap = document.getElementById('restaurant-menu-wrap');
+  if(!wrap) return;
+  const sub = getSubCats('all');
+  let html = `<div class="menu-cats" id="r-cats">
+    <button class="cat-btn active" onclick="setRCat('all',this)">All</button>
+    ${ALL_CATS.filter(c=>c!=='all').map(c=>`<button class="cat-btn" onclick="setRCat('${c}',this)">${CAT_LABELS[c]}</button>`).join('')}
+  </div>
+  <div class="menu-grid" id="r-grid"></div>`;
+  wrap.innerHTML = html;
+  renderRGrid('all');
+}
+
+let rCat='all';
+function setRCat(c,el){
+  rCat=c;
+  document.querySelectorAll('#r-cats .cat-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  renderRGrid(c);
+}
+function renderRGrid(dept){
+  const grid = document.getElementById('r-grid');
+  if(!grid) return;
+  const items = (dept==='all'?MENU_DATA:MENU_DATA.filter(i=>i.dept===dept)).slice(0,60);
+  grid.innerHTML = items.map(item=>`<div class="menu-card" style="cursor:default">
+    <div class="mc-top"><div><div class="mc-name">${item.name}</div><div class="mc-code">${item.code}</div></div><span class="mc-dept dept-${item.dept}">${item.dept}</span></div>
+    <div class="mc-bottom"><div class="mc-price">${Rs(item.price)}</div><button class="btn-add" onclick="showPage('order');toast('Item highlighted in Order page')">Order →</button></div>
+  </div>`).join('') + (items.length>=60?`<div style="grid-column:1/-1;text-align:center;padding:16px"><button class="btn-outline" onclick="showPage('order')">See all ${MENU_DATA.filter(i=>dept==='all'||i.dept===dept).length} items →</button></div>`:'');
+}
+
+// ── CART ──
+function addToCart(code) {
+  cart[code] = (cart[code]||0)+1;
+  updateCart(); renderOrderMenu(); toast('Added to cart');
+}
+function changeCartQty(code, d) {
+  cart[code] = (cart[code]||0)+d;
+  if(cart[code]<=0) delete cart[code];
+  updateCart(); renderOrderMenu();
+}
+function updateCart() {
+  const codes = Object.keys(cart);
+  const totalQty = codes.reduce((s,c)=>s+cart[c],0);
+  const fab = document.getElementById('cart-fab');
+  const badge = document.getElementById('fab-badge');
+  fab.style.display = totalQty>0?'flex':'none';
+  badge.textContent = totalQty;
+
+  const cartEl = document.getElementById('cartItems');
+  if(!codes.length){
+    cartEl.innerHTML='<p style="color:var(--muted);font-size:0.85rem;text-align:center;padding:40px 0">Your cart is empty</p>';
+    setTotals(0,0,0);
+    document.getElementById('pay-btn').disabled=true;
+    return;
+  }
+  document.getElementById('pay-btn').disabled=false;
+  cartEl.innerHTML = codes.map(code=>{
+    const item = MENU_DATA.find(i=>i.code===code);
+    const q = cart[code];
+    return `<div class="cart-item">
+      <div class="ci-row">
+        <span class="ci-name">${item.name}</span>
+        <span class="ci-price">${Rs(item.price*q)}</span>
+      </div>
+      <div class="ci-row">
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="changeCartQty('${code}',-1)">−</button>
+          <span class="qty-num">${q}</span>
+          <button class="qty-btn" onclick="changeCartQty('${code}',1)">+</button>
+        </div>
+        <span style="font-size:0.72rem;color:var(--muted)">${q} × ${Rs(item.price)}</span>
+        <button onclick="delete cart['${code}'];updateCart();renderOrderMenu()" style="background:none;border:none;color:var(--muted);font-size:0.78rem;cursor:pointer;margin-left:auto">Remove</button>
+      </div>
+    </div>`;
+  }).join('');
+  const sub = codes.reduce((s,c)=>s+MENU_DATA.find(i=>i.code===c).price*cart[c],0);
+  const tax = sub*0.13;
+  const sc = sub*0.10;
+  setTotals(sub,tax,sc);
+}
+function setTotals(sub,tax,sc){
+  const total=sub+tax+sc;
+  document.getElementById('c-sub').textContent=Rs(sub);
+  document.getElementById('c-tax').textContent=Rs(tax);
+  document.getElementById('c-sc').textContent=Rs(sc);
+  document.getElementById('c-total').textContent=Rs(total);
+}
+
+function showCheckoutModal() {
+  const codes = Object.keys(cart);
+  const sub = codes.reduce((s,c)=>s+MENU_DATA.find(i=>i.code===c).price*cart[c],0);
+  const tax=sub*0.13, sc=sub*0.10, total=sub+tax+sc;
+  document.getElementById('modal-items').innerHTML=codes.map(code=>{
+    const item=MENU_DATA.find(i=>i.code===code);
+    return `<div style="display:flex;justify-content:space-between;font-size:0.82rem;padding:6px 0;border-bottom:1px solid var(--border)">
+      <span style="color:var(--text)">${item.name} <span style="color:var(--muted)">×${cart[code]}</span></span>
+      <span style="color:var(--gold)">${Rs(item.price*cart[code])}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('m-sub').textContent=Rs(sub);
+  document.getElementById('m-tax').textContent=Rs(tax);
+  document.getElementById('m-sc').textContent=Rs(sc);
+  document.getElementById('m-total').textContent=Rs(total);
+  const notes = document.getElementById('cart-notes').value;
+  document.getElementById('modal-notes').textContent = notes?'Note: '+notes:'';
+  document.getElementById('checkout-modal').classList.add('show');
+}
+function closeCheckout(){document.getElementById('checkout-modal').classList.remove('show');}
+
+function confirmOrder(){
+  const codes=Object.keys(cart);
+  const sub=codes.reduce((s,c)=>s+MENU_DATA.find(i=>i.code===c).price*cart[c],0);
+  const tax=sub*0.13,sc=sub*0.10,total=sub+tax+sc;
+  const order={
+    id:'ORD-'+String(orders.length+1).padStart(3,'0'),
+    items:{...cart},notes:document.getElementById('cart-notes').value,
+    sub,tax,sc,total,time:new Date(),status:'confirmed'
+  };
+  orders.push(order);
+  cart={};
+  closeCheckout();
+  updateCart();
+  renderOrderMenu();
+  document.getElementById('suc-details').innerHTML=`
+    <b style="color:var(--gold)">${order.id}</b><br>
+    ${Object.keys(order.items).map(c=>`${MENU_DATA.find(i=>i.code===c).name} ×${order.items[c]}`).join('<br>')}
+    <br><br><b>Total: ${Rs(order.total)}</b>
+  `;
+  document.getElementById('success-modal').classList.add('show');
+}
+function closeSuccess(){document.getElementById('success-modal').classList.remove('show');}
+
+// ── CART PANEL ──
+function openCart(){document.getElementById('cart-panel').classList.add('open');document.getElementById('overlay').classList.add('show');}
+function closeCart(){document.getElementById('cart-panel').classList.remove('open');document.getElementById('overlay').classList.remove('show');}
+
+// ── BOOKINGS ──
+function initCal(){
+  const now=new Date();
+  calYear=now.getFullYear();calMonth=now.getMonth();
+  renderCal();
+}
+function renderCal(){
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('cal-month').textContent=`${months[calMonth]} ${calYear}`;
+  const grid=document.getElementById('cal-grid');
+  const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  let html=days.map(d=>`<div class="cal-day header">${d}</div>`).join('');
+  const first=new Date(calYear,calMonth,1).getDay();
+  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+  const offset=first===0?6:first-1;
+  for(let i=0;i<offset;i++) html+=`<div class="cal-day"></div>`;
+  const today=new Date();
+  for(let d=1;d<=daysInMonth;d++){
+    const date=new Date(calYear,calMonth,d);
+    const isPast=date<new Date(today.getFullYear(),today.getMonth(),today.getDate());
+    const isToday=d===today.getDate()&&calMonth===today.getMonth()&&calYear===today.getFullYear();
+    const ds=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isSel=selectedDate===ds;
+    html+=`<div class="cal-day ${isPast?'past':(isSel?'selected':'available')} ${isToday?'today':''}" ${!isPast?`onclick="selectDate('${ds}')"`:''}>${d}</div>`;
+  }
+  grid.innerHTML=html;
+}
+function prevMonth(){if(calMonth===0){calMonth=11;calYear--;}else calMonth--;renderCal();}
+function nextMonth(){if(calMonth===11){calMonth=0;calYear++;}else calMonth++;renderCal();}
+function selectDate(d){
+  selectedDate=d;selectedTime=null;
+  renderCal();
+  document.getElementById('b-chosen-date').textContent=d;
+  updateTimeSlots();
+  bNext(2);
+}
+function updateTimeSlots(){
+  const slots=['7:00 AM','8:00 AM','9:00 AM','10:00 AM','11:00 AM','12:00 PM','1:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM','8:00 PM','9:00 PM','10:00 PM'];
+  const taken=['12:00 PM','1:00 PM','7:00 PM'];
+  document.getElementById('timeslots').innerHTML=slots.map(s=>{
+    const isT=taken.includes(s);
+    const isSel=selectedTime===s;
+    return `<div class="timeslot ${isT?'taken':(isSel?'selected':'available')}" ${!isT?`onclick="selectTime('${s}')"`:''}>${s}${isT?'<br><small>Full</small>':''}</div>`;
+  }).join('');
+}
+function selectTime(t){selectedTime=t;updateTimeSlots();}
+function bNext(step){
+  if(step===2&&!selectedTime){toast('Please select a time slot');return;}
+  if(step===4){
+    const name=document.getElementById('b-name').value.trim();
+    const phone=document.getElementById('b-phone').value.trim();
+    if(!name||!phone){toast('Please fill in name and phone');return;}
+    document.getElementById('b-summary').innerHTML=`
+      <div style="font-size:0.85rem;line-height:2">
+        <div><span style="color:var(--muted)">Type:</span> <span style="color:var(--cream)">${document.getElementById('b-type').value}</span></div>
+        <div><span style="color:var(--muted)">Date:</span> <span style="color:var(--cream)">${selectedDate}</span></div>
+        <div><span style="color:var(--muted)">Time:</span> <span style="color:var(--cream)">${selectedTime}</span></div>
+        <div><span style="color:var(--muted)">Name:</span> <span style="color:var(--cream)">${name}</span></div>
+        <div><span style="color:var(--muted)">Phone:</span> <span style="color:var(--cream)">${phone}</span></div>
+        <div><span style="color:var(--muted)">Guests:</span> <span style="color:var(--cream)">${document.getElementById('b-guests').value}</span></div>
+        ${document.getElementById('b-notes').value?`<div><span style="color:var(--muted)">Notes:</span> <span style="color:var(--cream)">${document.getElementById('b-notes').value}</span></div>`:''}
+      </div>`;
+  }
+  [1,2,3,4].forEach(i=>{
+    document.getElementById('b-step'+i).style.display='none';
+    document.getElementById('bstep'+i).className='step'+(i<step?' done':'');
+  });
+  document.getElementById('b-step'+step).style.display='block';
+  document.getElementById('bstep'+step).className='step active';
+}
+function bBack(step){bNext(step);}
+function confirmBooking(){
+  const booking={
+    id:'BK-'+String(bookings.length+1).padStart(3,'0'),
+    type:document.getElementById('b-type').value,
+    date:selectedDate,time:selectedTime,
+    name:document.getElementById('b-name').value,
+    phone:document.getElementById('b-phone').value,
+    guests:document.getElementById('b-guests').value,
+    notes:document.getElementById('b-notes').value,
+    status:'confirmed'
+  };
+  bookings.push(booking);
+  document.getElementById('book-confirm-text').textContent=`${booking.id} — ${booking.type} on ${booking.date} at ${booking.time} for ${booking.name}.`;
+  document.getElementById('book-success').classList.add('show');
+  selectedDate=null;selectedTime=null;
+  bNext(1);
+}
+function setWashType(t){document.getElementById('b-type').value=t;}
+
+// ── GALLERY ──
+const GAL_ITEMS=[
+  {cat:'food',emoji:'🍜',label:'Momo Platter'},{cat:'food',emoji:'🍗',label:'Sekuwa'},{cat:'food',emoji:'🍕',label:'Pizza'},
+  {cat:'food',emoji:'🥩',label:'Steak'},{cat:'food',emoji:'🍛',label:'Biryani'},{cat:'food',emoji:'🍹',label:'Cocktail'},
+  {cat:'food',emoji:'🫔',label:'Sandwich'},{cat:'food',emoji:'🍜',label:'Chowmein'},{cat:'food',emoji:'☕',label:'Coffee'},
+  {cat:'facility',emoji:'🏠',label:'Dining Area'},{cat:'facility',emoji:'🍺',label:'Bar Counter'},{cat:'facility',emoji:'🛋',label:'Lounge'},
+  {cat:'facility',emoji:'🚗',label:'Car Wash Bay'},{cat:'facility',emoji:'🌿',label:'Garden Seating'},{cat:'facility',emoji:'🔥',label:'Open Kitchen'},
+  {cat:'before-after',emoji:'🚗→✨',label:'Sedan Clean'},{cat:'before-after',emoji:'🚙→✨',label:'SUV Detail'},{cat:'before-after',emoji:'🏍→✨',label:'Bike Wash'},
+];
+function renderGallery(filter='all'){
+  const items=filter==='all'?GAL_ITEMS:GAL_ITEMS.filter(g=>g.cat===filter);
+  document.getElementById('gal-grid').innerHTML=items.map(g=>`<div class="gal-item" title="${g.label}"><div style="text-align:center"><div style="font-size:2rem">${g.emoji}</div><div style="font-size:0.7rem;color:var(--muted);margin-top:4px">${g.label}</div></div></div>`).join('');
+}
+function filterGal(f,el){
+  document.querySelectorAll('#gal-cats .cat-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');renderGallery(f);
+}
+
+// ── REVIEWS ──
+function renderReviews(){
+  document.getElementById('review-cards').innerHTML=reviews.map(r=>`
+    <div class="review-card">
+      <div class="rc-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+      <div class="rc-text">${r.text}</div>
+      <div class="rc-author">${r.name}</div>
+      <div class="rc-date">${r.date}</div>
+    </div>`).join('');
+}
+function setStars(n){
+  starRating=n;
+  document.querySelectorAll('.star-pick').forEach(s=>{s.classList.toggle('on',parseInt(s.dataset.v)<=n);});
+}
+function submitReview(){
+  if(!starRating){toast('Please select a rating');return;}
+  const name=document.getElementById('rv-name').value.trim()||'Anonymous';
+  const text=document.getElementById('rv-text').value.trim();
+  if(!text){toast('Please write a review');return;}
+  reviews.unshift({name,rating:starRating,text,date:new Date().toISOString().split('T')[0]});
+  renderReviews();
+  document.getElementById('rv-name').value='';
+  document.getElementById('rv-text').value='';
+  setStars(0);
+  toast('✓ Review submitted! Thank you.');
+}
+
+// ── ADMIN ──
+function adminLogin(){
+  const u=document.getElementById('adm-user').value;
+  const p=document.getElementById('adm-pass').value;
+  if(u==='admin'&&p==='admin123'){
+    document.getElementById('admin-login').style.display='none';
+    document.getElementById('admin-dash').style.display='block';
+    renderAdminDash();
+  } else toast('Incorrect credentials');
+}
+function adminLogout(){
+  document.getElementById('admin-login').style.display='flex';
+  document.getElementById('admin-dash').style.display='none';
+}
+function showAdminTab(tab,el){
+  ['overview','bookings','orders','reviews','settings'].forEach(t=>{
+    document.getElementById('adm-'+t).style.display=t===tab?'block':'none';
+  });
+  document.querySelectorAll('.sidebar-link').forEach(l=>l.classList.remove('active'));
+  el.classList.add('active');
+  if(tab==='bookings') renderAdminBookings();
+  if(tab==='orders') renderAdminOrders();
+  if(tab==='reviews') renderAdminReviews();
+}
+function renderAdminDash(){
+  const totalRev = orders.reduce((s,o)=>s+o.total,0);
+  document.getElementById('stat-cards').innerHTML=`
+    <div class="stat-card"><div class="stat-val">${orders.length}</div><div class="stat-label">Total Orders</div></div>
+    <div class="stat-card"><div class="stat-val">${Rs(totalRev)}</div><div class="stat-label">Revenue</div></div>
+    <div class="stat-card"><div class="stat-val">${bookings.length}</div><div class="stat-label">Bookings</div></div>
+    <div class="stat-card"><div class="stat-val">${reviews.length}</div><div class="stat-label">Reviews</div></div>
+    <div class="stat-card"><div class="stat-val">${MENU_DATA.length}</div><div class="stat-label">Menu Items</div></div>
+  `;
+  const recentOrders=orders.slice(-5).reverse();
+  document.getElementById('admin-orders-table').innerHTML=recentOrders.length?`<table><thead><tr><th>Order ID</th><th>Items</th><th>Total</th><th>Status</th><th>Time</th></tr></thead><tbody>${recentOrders.map(o=>`<tr><td style="color:var(--gold)">${o.id}</td><td>${Object.keys(o.items).length} items</td><td>${Rs(o.total)}</td><td><span class="status-pill s-confirmed">Confirmed</span></td><td style="color:var(--muted)">${o.time.toLocaleTimeString()}</td></tr>`).join('')}</tbody></table>`:'<p style="padding:20px;color:var(--muted);font-size:0.85rem">No orders yet.</p>';
+}
+function renderAdminBookings(){
+  document.getElementById('admin-bookings-table').innerHTML=bookings.length?`<table><thead><tr><th>ID</th><th>Type</th><th>Date</th><th>Time</th><th>Name</th><th>Phone</th><th>Status</th></tr></thead><tbody>${bookings.map(b=>`<tr><td style="color:var(--gold)">${b.id}</td><td>${b.type}</td><td>${b.date}</td><td>${b.time}</td><td>${b.name}</td><td>${b.phone}</td><td><span class="status-pill s-confirmed">Confirmed</span></td></tr>`).join('')}</tbody></table>`:'<p style="padding:20px;color:var(--muted);font-size:0.85rem">No bookings yet.</p>';
+}
+function renderAdminOrders(){
+  document.getElementById('admin-all-orders-table').innerHTML=orders.length?`<table><thead><tr><th>ID</th><th>Items</th><th>Subtotal</th><th>Tax</th><th>Total</th><th>Time</th></tr></thead><tbody>${orders.map(o=>`<tr><td style="color:var(--gold)">${o.id}</td><td>${Object.keys(o.items).map(c=>MENU_DATA.find(i=>i.code===c).name+' ×'+o.items[c]).join(', ')}</td><td>${Rs(o.sub)}</td><td>${Rs(o.tax+o.sc)}</td><td style="color:var(--gold)">${Rs(o.total)}</td><td style="color:var(--muted)">${o.time.toLocaleString()}</td></tr>`).join('')}</tbody></table>`:'<p style="padding:20px;color:var(--muted);font-size:0.85rem">No orders yet.</p>';
+}
+function renderAdminReviews(){
+  document.getElementById('admin-reviews-list').innerHTML=reviews.map(r=>`<div class="review-card" style="margin-bottom:12px"><div class="rc-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div><div class="rc-text">${r.text}</div><div style="display:flex;justify-content:space-between"><span class="rc-author">${r.name}</span><span class="rc-date">${r.date}</span></div></div>`).join('');
+}
+
+// ── PAGE NAV ──
+function showPage(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l=>{if(l.textContent.toLowerCase().includes(page.slice(0,4))||l.onclick?.toString().includes(`'${page}'`)) l.classList.add('active');});
+  window.scrollTo(0,0);
+  closeCart();
+  document.getElementById('navLinks').classList.remove('open');
+
+  if(page==='order'){activeCat='all';activeSubCat='all';renderOrderMenu();}
+  if(page==='restaurant') renderRestaurantMenu();
+  if(page==='gallery') renderGallery();
+  if(page==='reviews') renderReviews();
+  if(page==='admin') renderAdminDash();
+}
+
+// NAV category buttons for order page
+document.addEventListener('DOMContentLoaded',()=>{
+  // inject dept filter above order page
+  const orderSec = document.querySelector('#page-order .section');
+  const deptNav = document.createElement('div');
+  deptNav.style.cssText='display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap';
+  deptNav.innerHTML=ALL_CATS.map(c=>`<button class="cat-btn ${c==='all'?'active':''}" id="dcb-${c}" onclick="setDeptCat('${c}')">${CAT_LABELS[c]||c}</button>`).join('');
+  orderSec.insertBefore(deptNav, orderSec.querySelector('.menu-cats'));
+  initCal();renderOrderMenu();renderGallery();renderReviews();
+});
+
+function setDeptCat(c){
+  activeCat=c;activeSubCat='all';
+  document.querySelectorAll('[id^=dcb-]').forEach(b=>b.classList.remove('active'));
+  document.getElementById('dcb-'+c)?.classList.add('active');
+  renderOrderMenu();
+}
+
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+
+// ── TOAST ──
+let toastT;
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2500);
+}
+</script>
+</body>
+</html>
