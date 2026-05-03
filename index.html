@@ -60,6 +60,34 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,13,13,0.
 .btn-blue{background:var(--blue);color:#fff;border:none;padding:13px 28px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.85rem;letter-spacing:0.05em;border-radius:3px;cursor:pointer;transition:all 0.2s}
 .btn-blue:hover{filter:brightness(1.1)}
 
+.hero {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:80px 24px 60px;
+  position:relative;
+  overflow:hidden;
+
+  /* YOUR IMAGE */
+  background: url('bg.jpeg') no-repeat center center/cover;
+}
+
+/* DARK OVERLAY */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+.hero * {
+  position: relative;
+  z-index: 1;
+}
+
 /* SECTION COMMON */
 .section{padding:80px 24px;max-width:1200px;margin:0 auto}
 .section-tag{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
@@ -149,6 +177,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,13,13,0.
 #toast.show{transform:translateX(-50%) translateY(0)}
 
 /* CARWASH */
+#page-carwash{background-image: url('washing.jpeg');}
 .wash-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:32px}
 .wash-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px;transition:border-color 0.2s;position:relative;overflow:hidden}
 .wash-card.featured{border-color:rgba(58,123,212,0.4)}
@@ -268,13 +297,23 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 .delay-3{animation-delay:0.3s}
 
 .gold-line{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.2;margin:40px 0}
+.nav-logo img {
+  display: block;
+  top: 39px;
+  position: relative;
+}
+.nav-logo .name {
+ top: 38px;
+ position: relative;
+}
+#page-order{background-image: url('coffee.jpeg');}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo" onclick="showPage('home')"><img src="dfl.jpeg" alt="DFL" width="20%"> DuwakotFoodLand</div>
+  <div class="nav-logo" onclick="showPage('home')"><img src="dfl.jpeg" alt="DFL" width="100px" class="logo"> <p class="name">DuwakotFoodLand</p> </div>
   <div class="nav-links" id="navLinks">
     <span class="nav-link active" onclick="showPage('home')">Home</span>
     <span class="nav-link" onclick="showPage('restaurant')">Restaurant</span>
@@ -378,7 +417,7 @@ tr:hover td{background:rgba(255,255,255,0.02)}
   <!-- Offers -->
   <div class="section">
     <p class="section-tag">Current Offers</p>
-    <h2 class="section-title">Today's Deals</h2>
+    <h2 class="section-title">Our Best Deals</h2>
     <div class="offer-cards">
       <div class="offer-card">
         <span class="offer-badge">HAPPY HOUR</span>
@@ -394,6 +433,11 @@ tr:hover td{background:rgba(255,255,255,0.02)}
         <span class="offer-badge">CAR WASH</span>
         <div class="offer-title">Wash + Meal Bundle</div>
         <div class="offer-desc">Get a free basic car wash with any dine-in bill over Rs 1,500.</div>
+      </div>
+      <div class="offer-card">
+        <span class="offer-badge">Tourism</span>
+        <div class="offer-title">Best locations with best view</div>
+        <div class="offer-desc">Coming soon...</div>
       </div>
     </div>
 
@@ -555,6 +599,7 @@ tr:hover td{background:rgba(255,255,255,0.02)}
       </div>
       <div class="timeslots" id="timeslots"></div>
       <button class="btn-outline" onclick="bBack(1)" style="margin-top:16px">← Back</button>
+<button class="btn-primary" onclick="bNext(3)" style="margin-top:16px">Next →</button>
     </div>
 
     <!-- Step 3: Details -->
@@ -709,11 +754,9 @@ tr:hover td{background:rgba(255,255,255,0.02)}
         <p style="color:var(--muted);line-height:1.8;font-size:0.9rem;margin-bottom:16px">Founded in Duwakot, Bhaktapur, Duwakot FoodLand started as a humble neighbourhood eatery serving authentic Nepali snacks and meals. Over the years, we've grown into a full-service dining destination — spanning a kitchen, a bar, a café, and Nepal's favourite auto spa, all under one roof.</p>
         <p style="color:var(--muted);line-height:1.8;font-size:0.9rem">Our menu celebrates the richness of Nepali cuisine — from sekuwa and momo to biryanis and continental sizzlers — alongside an extensive drinks menu and café offerings.</p>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:32px;text-align:center">
-        <div style="font-size:4rem;margin-bottom:12px">🏔</div>
-        <div class="fraunces" style="font-size:1.5rem;color:var(--cream)">Since 2010</div>
-        <div style="color:var(--muted);font-size:0.83rem;margin-top:4px">Serving Bhaktapur with pride</div>
-      </div>
+      <div style="border-radius:8px;overflow:hidden;height:280px;">
+  <img src="casual.jpeg" alt="Duwakot FoodLand" style="width:100%;height:100%;object-fit:cover;display:block;">
+</div>
     </div>
     <div class="gold-line"></div>
     <p class="section-tag">Our Values</p>
@@ -1467,8 +1510,8 @@ function updateTimeSlots(){
   }).join('');
 }
 function selectTime(t){selectedTime=t;updateTimeSlots();}
-function bNext(step){
-  if(step===2&&!selectedTime){toast('Please select a time slot');return;}
+  function bNext(step){
+  if(step===3 && !selectedTime){ toast('Please select a time slot'); return; }
   if(step===4){
     const name=document.getElementById('b-name').value.trim();
     const phone=document.getElementById('b-phone').value.trim();
@@ -1513,16 +1556,30 @@ function setWashType(t){document.getElementById('b-type').value=t;}
 
 // ── GALLERY ──
 const GAL_ITEMS=[
-  {cat:'food',emoji:'🍜',label:'Momo Platter'},{cat:'food',emoji:'🍗',label:'Sekuwa'},{cat:'food',emoji:'🍕',label:'Pizza'},
-  {cat:'food',emoji:'🥩',label:'Steak'},{cat:'food',emoji:'🍛',label:'Biryani'},{cat:'food',emoji:'🍹',label:'Cocktail'},
-  {cat:'food',emoji:'🫔',label:'Sandwich'},{cat:'food',emoji:'🍜',label:'Chowmein'},{cat:'food',emoji:'☕',label:'Coffee'},
-  {cat:'facility',emoji:'🏠',label:'Dining Area'},{cat:'facility',emoji:'🍺',label:'Bar Counter'},{cat:'facility',emoji:'🛋',label:'Lounge'},
-  {cat:'facility',emoji:'🚗',label:'Car Wash Bay'},{cat:'facility',emoji:'🌿',label:'Garden Seating'},{cat:'facility',emoji:'🔥',label:'Open Kitchen'},
-  {cat:'before-after',emoji:'🚗→✨',label:'Sedan Clean'},{cat:'before-after',emoji:'🚙→✨',label:'SUV Detail'},{cat:'before-after',emoji:'🏍→✨',label:'Bike Wash'},
+  {cat:'food',emoji:'🍜',label:'Momo Platter', img:'momo.jpg'},
+  {cat:'facility',emoji:'🏠',label:'Dining Area', img:'casual.jpeg'},
+  {cat:'facility',emoji:'🍺',label:'Bar Counter', img:'bar.jpeg'},
+  {cat:'facility',emoji:'🔥',label:'Open Kitchen', img:'cooking.jpeg'},
+  {cat:'facility',emoji:'🚗',label:'Car Wash Bay', img:'washing.jpeg'},
+  {cat:'facility',emoji:'🅿️',label:'Parking', img:'parking.jpeg'},
+  // for items without a photo, just leave img:''
+  {cat:'food',emoji:'🍗',label:'Sekuwa', img:'sekuwa.jpg'},
+  {cat:'food',emoji:'🍕',label:'Pizza', img:'pizza.png'},
+  {cat:'before-after',emoji:'🚗→✨',label:'Sedan Clean', img:'procar.jpg'},
+  // ... rest of your items
 ];
 function renderGallery(filter='all'){
   const items=filter==='all'?GAL_ITEMS:GAL_ITEMS.filter(g=>g.cat===filter);
-  document.getElementById('gal-grid').innerHTML=items.map(g=>`<div class="gal-item" title="${g.label}"><div style="text-align:center"><div style="font-size:2rem">${g.emoji}</div><div style="font-size:0.7rem;color:var(--muted);margin-top:4px">${g.label}</div></div></div>`).join('');
+  document.getElementById('gal-grid').innerHTML=items.map(g=>`
+    <div class="gal-item" title="${g.label}">
+      ${g.img
+        ? `<img src="${g.img}" alt="${g.label}" style="width:100%;height:100%;object-fit:cover;display:block;">`
+        : `<div style="text-align:center">
+             <div style="font-size:2rem">${g.emoji}</div>
+             <div style="font-size:0.7rem;color:var(--muted);margin-top:4px">${g.label}</div>
+           </div>`
+      }
+    </div>`).join('');
 }
 function filterGal(f,el){
   document.querySelectorAll('#gal-cats .cat-btn').forEach(b=>b.classList.remove('active'));
